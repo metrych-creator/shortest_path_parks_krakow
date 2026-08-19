@@ -1,0 +1,15 @@
+certifi==2026.7.22
+charset-normalizer==3.5.1
+click==8.4.2
+Deprecated==1.2.18
+geographiclib==2.1
+geopy==2.5.0
+idna==3.19
+networkx==2.8.8
+numpy==2.5.2
+python_tsp==0.5.0
+requests==2.34.2
+tabulate==0.8.10
+tsplib95==0.7.1
+urllib3==2.7.0
+wrapt==1.17.3

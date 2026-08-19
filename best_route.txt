@@ -1,0 +1,80 @@
+--- OPTIMAL TSP ROUTE (Estimated distance: 105.32 km) ---
+
+1. [No. 1] Park im. Wisławy Szymborskiej -> 1.00 km to next stop
+2. [No. 3] Park Jalu Kurka -> 0.82 km to next stop
+3. [No. 20] Park Kleparski -> 0.87 km to next stop
+4. [No. 22] Park przy ul. Łokietka -> 0.77 km to next stop
+5. [No. 13] Park im. Stanisława Wyspiańskiego -> 0.43 km to next stop
+6. [No. 15] Park Krowoderski -> 1.37 km to next stop
+7. [No. 14] Park im. Tadeusza Kościuszki -> 1.71 km to next stop
+8. [No. 10] Park Rzeczny Białucha -> 0.83 km to next stop
+9. [No. 12] Park Zaczarowanej Dorożki (Stawy Dominikańskie) -> 0.42 km to next stop
+10. [No. 9] Park Ogród nad Sudołem -> 1.46 km to next stop
+11. [No. 11] Park Reduta -> 0.86 km to next stop
+12. [No. 58] Fort Batowice -> 1.36 km to next stop
+13. [No. 61] Fort Mistrzejowice -> 0.92 km to next stop
+14. [No. 60] Planty Mistrzejowickie -> 0.97 km to next stop
+15. [No. 59] Park Tysiąclecia -> 0.81 km to next stop
+16. [No. 57] Park pil. gen. S. Skalskiego -> 0.71 km to next stop
+17. [No. 54] Park Czyżyny -> 1.45 km to next stop
+18. [No. 55] Park Lotników Polskich -> 1.33 km to next stop
+19. [No. 56] Park Woźniców -> 2.38 km to next stop
+20. [No. 63] Planty Bieńczyckie -> 0.95 km to next stop
+21. [No. 74] Park Wiśniowy Sad -> 0.74 km to next stop
+22. [No. 71] Park Kultury -> 0.78 km to next stop
+23. [No. 69] Park im. Stefana Żeromskiego -> 0.60 km to next stop
+24. [No. 70] Park Klasztorna -> 1.27 km to next stop
+25. [No. 72] Park Ratuszowy -> 0.36 km to next stop
+26. [No. 73] Park Szwedzki -> 0.85 km to next stop
+27. [No. 62] Park Zalew Nowohucki -> 0.19 km to next stop
+28. [No. 65] Park Jana Matejki -> 1.55 km to next stop
+29. [No. 67] Park Zielony Jar Wandy -> 4.16 km to next stop
+30. [No. 64] Park Łuczanowice -> 1.28 km to next stop
+31. [No. 66] Park Wadów -> 2.59 km to next stop
+32. [No. 68] Park Węgrzynowice -> 6.70 km to next stop
+33. [No. 75] Park Przylasek Wyciąski -> 1.92 km to next stop
+34. [No. 76] Park Przylasek Rusiecki -> 8.27 km to next stop
+35. [No. 41] Park Złocień -> 1.25 km to next stop
+36. [No. 43] Park przy Dworze Czeczów -> 1.87 km to next stop
+37. [No. 45] Park Aleksandry -> 0.56 km to next stop
+38. [No. 44] Park Rżąka -> 0.56 km to next stop
+39. [No. 78] Park Kurczaba -> 0.72 km to next stop
+40. [No. 47] Park Aleksandry Północ -> 0.63 km to next stop
+41. [No. 46] Park Lilli Wenedy -> 0.73 km to next stop
+42. [No. 42] Park im. Anny i Erazma Jerzmanowskich -> 1.17 km to next stop
+43. [No. 40] Park Rzeczny Drwinka -> 1.46 km to next stop
+44. [No. 39] Park Kurdwanów -> 1.36 km to next stop
+45. [No. 38] Park Duchacki -> 1.47 km to next stop
+46. [No. 16] Park Łagiewnicki -> 1.36 km to next stop
+47. [No. 18] Park Rzeczny Wilga -> 1.09 km to next stop
+48. [No. 17] Park Solvay -> 2.09 km to next stop
+49. [No. 36] Park Maćka i Doroty -> 0.52 km to next stop
+50. [No. 37] Park przy Forcie Borek -> 3.11 km to next stop
+51. [No. 32] Park linearny Ruczaj -> 0.62 km to next stop
+52. [No. 35] Park Zakrzówek -> 1.10 km to next stop
+53. [No. 34] Park Pychowicki -> 2.65 km to next stop
+54. [No. 77] Park Fort 2 "Kościuszko" im. prof. Janusza Bogdanowskiego -> 1.99 km to next stop
+55. [No. 30] Park Decjusza -> 0.64 km to next stop
+56. [No. 31] Park Rzeczny Rudawa -> 1.18 km to next stop
+57. [No. 28] Park Młynówka Królewska -> 1.85 km to next stop
+58. [No. 27] Park Rzeczny im. Włodzimierza Tetmajera -> 1.76 km to next stop
+59. [No. 26] Park przy ul. Radzikowskiego -> 1.10 km to next stop
+60. [No. 25] Park przy Forcie Bronowice -> 1.00 km to next stop
+61. [No. 21] Park Ogród Łobzów -> 0.49 km to next stop
+62. [No. 24] Park św. Wincentego a'Paulo -> 1.01 km to next stop
+63. [No. 23] Park Krakowski im. M. Grechuty -> 0.84 km to next stop
+64. [No. 19] Park im. Henryka Jordana -> 0.41 km to next stop
+65. [No. 29] Błonia Krakowskie -> 1.21 km to next stop
+66. [No. 33] Park Dębnicki -> 1.27 km to next stop
+67. [No. 4] Bulwary Wisły -> 1.12 km to next stop
+68. [No. 52] Planty im. Floriana Nowackiego -> 0.62 km to next stop
+69. [No. 48] Park im. Wojciecha Bednarskiego -> 1.60 km to next stop
+70. [No. 51] Park Staw Płaszowski -> 1.50 km to next stop
+71. [No. 53] Park Miejski Bagry Wielkie -> 1.34 km to next stop
+72. [No. 49] Park Rzeczny Ogród Płaszów -> 1.51 km to next stop
+73. [No. 6] Park Dąbie -> 0.99 km to next stop
+74. [No. 5] Park Grzegórzecki -> 0.62 km to next stop
+75. [No. 50] Park Stacja Wisła -> 1.85 km to next stop
+76. [No. 7] Park Strzelecki -> 0.77 km to next stop
+77. [No. 8] Park Kolejowy -> 0.79 km to next stop
+78. [No. 2] Planty Krakowskie -> 0.85 km to next stop
