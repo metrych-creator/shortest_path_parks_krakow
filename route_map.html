@@ -1,0 +1,2879 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_402800f16b1b3384a73002a06b9af37d {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+<style>
+  html, body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+  .folium-map {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    right: 380px;
+    width: auto !important;
+    height: 100% !important;
+  }
+  #route-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 380px;
+    height: 100%;
+    overflow-y: auto;
+    background: #0f172a;
+    color: #e2e8f0;
+    z-index: 10000;
+    font-family: system-ui, -apple-system, sans-serif;
+    box-shadow: -8px 0 24px rgba(15, 23, 42, 0.35);
+  }
+  #route-sidebar h2 {
+    margin: 0;
+    padding: 18px 18px 8px;
+    font-size: 18px;
+  }
+  #route-sidebar .total {
+    margin: 0 18px 12px;
+    color: #93c5fd;
+    font-size: 13px;
+  }
+  #route-sidebar ol {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 24px;
+  }
+  #route-sidebar .park-item {
+    display: flex;
+    gap: 8px;
+    padding: 8px 18px;
+    cursor: pointer;
+    border-left: 3px solid transparent;
+  }
+  #route-sidebar .park-item:hover {
+    background: #1e293b;
+  }
+  #route-sidebar .park-item.start {
+    border-left-color: #22c55e;
+    background: #14532d33;
+  }
+  #route-sidebar .step {
+    min-width: 28px;
+    color: #94a3b8;
+    font-variant-numeric: tabular-nums;
+  }
+  #route-sidebar .details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  #route-sidebar .name {
+    font-size: 13px;
+    line-height: 1.3;
+  }
+  #route-sidebar .meta {
+    font-size: 12px;
+    color: #94a3b8;
+  }
+</style>
+<aside id="route-sidebar">
+  <h2>Trasa po parkach</h2>
+  <p class="total">Estymowana odległość: 105.45 km</p>
+  <ol>
+    <li class="park-item start" data-lat="50.06086111111111" data-lon="19.91772222222222"><span class="step">1.</span><span class="details"><span class="name">Park im. Henryka Jordana</span><span class="meta">(Nr. 19) · 1.31 km</span></span></li>
+<li class="park-item" data-lat="50.049083333333336" data-lon="19.916944444444443"><span class="step">2.</span><span class="details"><span class="name">Park Dębnicki</span><span class="meta">(Nr. 33) · 1.27 km</span></span></li>
+<li class="park-item" data-lat="50.052194444444446" data-lon="19.933944444444446"><span class="step">3.</span><span class="details"><span class="name">Bulwary Wisły</span><span class="meta">(Nr. 4) · 1.12 km</span></span></li>
+<li class="park-item" data-lat="50.04375" data-lon="19.942333333333334"><span class="step">4.</span><span class="details"><span class="name">Planty im. Floriana Nowackiego</span><span class="meta">(Nr. 52) · 0.62 km</span></span></li>
+<li class="park-item" data-lat="50.04163888888889" data-lon="19.950277777777778"><span class="step">5.</span><span class="details"><span class="name">Park im. Wojciecha Bednarskiego</span><span class="meta">(Nr. 48) · 1.60 km</span></span></li>
+<li class="park-item" data-lat="50.04119444444444" data-lon="19.972583333333333"><span class="step">6.</span><span class="details"><span class="name">Park Staw Płaszowski</span><span class="meta">(Nr. 51) · 1.50 km</span></span></li>
+<li class="park-item" data-lat="50.03463888888889" data-lon="19.990861111111112"><span class="step">7.</span><span class="details"><span class="name">Park Miejski Bagry Wielkie</span><span class="meta">(Nr. 53) · 1.34 km</span></span></li>
+<li class="park-item" data-lat="50.04655555555556" data-lon="19.993555555555556"><span class="step">8.</span><span class="details"><span class="name">Park Rzeczny Ogród Płaszów</span><span class="meta">(Nr. 49) · 1.51 km</span></span></li>
+<li class="park-item" data-lat="50.05661111111111" data-lon="19.97936111111111"><span class="step">9.</span><span class="details"><span class="name">Park Dąbie</span><span class="meta">(Nr. 6) · 0.99 km</span></span></li>
+<li class="park-item" data-lat="50.05513888888889" data-lon="19.96575"><span class="step">10.</span><span class="details"><span class="name">Park Grzegórzecki</span><span class="meta">(Nr. 5) · 0.62 km</span></span></li>
+<li class="park-item" data-lat="50.05097222222222" data-lon="19.959944444444446"><span class="step">11.</span><span class="details"><span class="name">Park Stacja Wisła</span><span class="meta">(Nr. 50) · 1.31 km</span></span></li>
+<li class="park-item" data-lat="50.05975" data-lon="19.947666666666667"><span class="step">12.</span><span class="details"><span class="name">Park Kolejowy</span><span class="meta">(Nr. 8) · 0.77 km</span></span></li>
+<li class="park-item" data-lat="50.066472222222224" data-lon="19.950499999999998"><span class="step">13.</span><span class="details"><span class="name">Park Strzelecki</span><span class="meta">(Nr. 7) · 0.70 km</span></span></li>
+<li class="park-item" data-lat="50.065333333333335" data-lon="19.94088888888889"><span class="step">14.</span><span class="details"><span class="name">Planty Krakowskie</span><span class="meta">(Nr. 2) · 0.44 km</span></span></li>
+<li class="park-item" data-lat="50.06927777777778" data-lon="19.941555555555556"><span class="step">15.</span><span class="details"><span class="name">Park Jalu Kurka</span><span class="meta">(Nr. 3) · 0.82 km</span></span></li>
+<li class="park-item" data-lat="50.076277777777776" data-lon="19.937833333333334"><span class="step">16.</span><span class="details"><span class="name">Park Kleparski</span><span class="meta">(Nr. 20) · 0.87 km</span></span></li>
+<li class="park-item" data-lat="50.08069444444445" data-lon="19.92786111111111"><span class="step">17.</span><span class="details"><span class="name">Park przy ul. Łokietka</span><span class="meta">(Nr. 22) · 0.77 km</span></span></li>
+<li class="park-item" data-lat="50.085861111111114" data-lon="19.92072222222222"><span class="step">18.</span><span class="details"><span class="name">Park im. Stanisława Wyspiańskiego</span><span class="meta">(Nr. 13) · 0.43 km</span></span></li>
+<li class="park-item" data-lat="50.089666666666666" data-lon="19.922027777777778"><span class="step">19.</span><span class="details"><span class="name">Park Krowoderski</span><span class="meta">(Nr. 15) · 1.37 km</span></span></li>
+<li class="park-item" data-lat="50.093444444444444" data-lon="19.94022222222222"><span class="step">20.</span><span class="details"><span class="name">Park im. Tadeusza Kościuszki</span><span class="meta">(Nr. 14) · 1.71 km</span></span></li>
+<li class="park-item" data-lat="50.08269444444444" data-lon="19.95727777777778"><span class="step">21.</span><span class="details"><span class="name">Park Rzeczny Białucha</span><span class="meta">(Nr. 10) · 0.83 km</span></span></li>
+<li class="park-item" data-lat="50.08727777777778" data-lon="19.96638888888889"><span class="step">22.</span><span class="details"><span class="name">Park Zaczarowanej Dorożki (Stawy Dominikańskie)</span><span class="meta">(Nr. 12) · 0.42 km</span></span></li>
+<li class="park-item" data-lat="50.09061111111111" data-lon="19.969194444444444"><span class="step">23.</span><span class="details"><span class="name">Park Ogród nad Sudołem</span><span class="meta">(Nr. 9) · 1.46 km</span></span></li>
+<li class="park-item" data-lat="50.096666666666664" data-lon="19.987222222222222"><span class="step">24.</span><span class="details"><span class="name">Park Reduta</span><span class="meta">(Nr. 11) · 0.86 km</span></span></li>
+<li class="park-item" data-lat="50.09961111111111" data-lon="19.998361111111112"><span class="step">25.</span><span class="details"><span class="name">Fort Batowice</span><span class="meta">(Nr. 58) · 1.36 km</span></span></li>
+<li class="park-item" data-lat="50.10088888888889" data-lon="20.01725"><span class="step">26.</span><span class="details"><span class="name">Fort Mistrzejowice</span><span class="meta">(Nr. 61) · 0.92 km</span></span></li>
+<li class="park-item" data-lat="50.09588888888889" data-lon="20.007055555555556"><span class="step">27.</span><span class="details"><span class="name">Planty Mistrzejowickie</span><span class="meta">(Nr. 60) · 0.97 km</span></span></li>
+<li class="park-item" data-lat="50.08925" data-lon="19.998361111111112"><span class="step">28.</span><span class="details"><span class="name">Park Tysiąclecia</span><span class="meta">(Nr. 59) · 0.81 km</span></span></li>
+<li class="park-item" data-lat="50.084694444444445" data-lon="20.007166666666667"><span class="step">29.</span><span class="details"><span class="name">Park pil. gen. S. Skalskiego</span><span class="meta">(Nr. 57) · 0.71 km</span></span></li>
+<li class="park-item" data-lat="50.07952777777778" data-lon="20.00138888888889"><span class="step">30.</span><span class="details"><span class="name">Park Czyżyny</span><span class="meta">(Nr. 54) · 1.45 km</span></span></li>
+<li class="park-item" data-lat="50.06713888888889" data-lon="19.99525"><span class="step">31.</span><span class="details"><span class="name">Park Lotników Polskich</span><span class="meta">(Nr. 55) · 1.33 km</span></span></li>
+<li class="park-item" data-lat="50.06511111111111" data-lon="20.013527777777778"><span class="step">32.</span><span class="details"><span class="name">Park Woźniców</span><span class="meta">(Nr. 56) · 1.58 km</span></span></li>
+<li class="park-item" data-lat="50.076277777777776" data-lon="20.027055555555556"><span class="step">33.</span><span class="details"><span class="name">Park Wiśniowy Sad</span><span class="meta">(Nr. 74) · 0.95 km</span></span></li>
+<li class="park-item" data-lat="50.084833333333336" data-lon="20.02647222222222"><span class="step">34.</span><span class="details"><span class="name">Planty Bieńczyckie</span><span class="meta">(Nr. 63) · 1.39 km</span></span></li>
+<li class="park-item" data-lat="50.0755" data-lon="20.039305555555554"><span class="step">35.</span><span class="details"><span class="name">Park Ratuszowy</span><span class="meta">(Nr. 72) · 0.99 km</span></span></li>
+<li class="park-item" data-lat="50.066833333333335" data-lon="20.04222222222222"><span class="step">36.</span><span class="details"><span class="name">Park im. Stefana Żeromskiego</span><span class="meta">(Nr. 69) · 0.78 km</span></span></li>
+<li class="park-item" data-lat="50.07113888888889" data-lon="20.033583333333333"><span class="step">37.</span><span class="details"><span class="name">Park Kultury</span><span class="meta">(Nr. 71) · 1.32 km</span></span></li>
+<li class="park-item" data-lat="50.066722222222225" data-lon="20.050638888888887"><span class="step">38.</span><span class="details"><span class="name">Park Klasztorna</span><span class="meta">(Nr. 70) · 1.00 km</span></span></li>
+<li class="park-item" data-lat="50.07475" data-lon="20.04425"><span class="step">39.</span><span class="details"><span class="name">Park Szwedzki</span><span class="meta">(Nr. 73) · 1.03 km</span></span></li>
+<li class="park-item" data-lat="50.08130555555555" data-lon="20.054333333333332"><span class="step">40.</span><span class="details"><span class="name">Park Jana Matejki</span><span class="meta">(Nr. 65) · 0.19 km</span></span></li>
+<li class="park-item" data-lat="50.07969444444444" data-lon="20.053361111111112"><span class="step">41.</span><span class="details"><span class="name">Park Zalew Nowohucki</span><span class="meta">(Nr. 62) · 1.74 km</span></span></li>
+<li class="park-item" data-lat="50.094944444444444" data-lon="20.058805555555555"><span class="step">42.</span><span class="details"><span class="name">Park Zielony Jar Wandy</span><span class="meta">(Nr. 67) · 4.16 km</span></span></li>
+<li class="park-item" data-lat="50.10825" data-lon="20.11313888888889"><span class="step">43.</span><span class="details"><span class="name">Park Łuczanowice</span><span class="meta">(Nr. 64) · 1.28 km</span></span></li>
+<li class="park-item" data-lat="50.09986111111111" data-lon="20.125444444444444"><span class="step">44.</span><span class="details"><span class="name">Park Wadów</span><span class="meta">(Nr. 66) · 2.59 km</span></span></li>
+<li class="park-item" data-lat="50.11377777777778" data-lon="20.154555555555554"><span class="step">45.</span><span class="details"><span class="name">Park Węgrzynowice</span><span class="meta">(Nr. 68) · 6.70 km</span></span></li>
+<li class="park-item" data-lat="50.05588888888889" data-lon="20.180666666666667"><span class="step">46.</span><span class="details"><span class="name">Park Przylasek Wyciąski</span><span class="meta">(Nr. 75) · 1.92 km</span></span></li>
+<li class="park-item" data-lat="50.04638888888889" data-lon="20.158277777777776"><span class="step">47.</span><span class="details"><span class="name">Park Przylasek Rusiecki</span><span class="meta">(Nr. 76) · 8.27 km</span></span></li>
+<li class="park-item" data-lat="50.02422222222222" data-lon="20.048166666666667"><span class="step">48.</span><span class="details"><span class="name">Park Złocień</span><span class="meta">(Nr. 41) · 1.25 km</span></span></li>
+<li class="park-item" data-lat="50.014361111111114" data-lon="20.039694444444443"><span class="step">49.</span><span class="details"><span class="name">Park przy Dworze Czeczów</span><span class="meta">(Nr. 43) · 1.87 km</span></span></li>
+<li class="park-item" data-lat="50.01175" data-lon="20.01386111111111"><span class="step">50.</span><span class="details"><span class="name">Park Aleksandry</span><span class="meta">(Nr. 45) · 0.56 km</span></span></li>
+<li class="park-item" data-lat="50.00830555555556" data-lon="20.00808333333333"><span class="step">51.</span><span class="details"><span class="name">Park Rżąka</span><span class="meta">(Nr. 44) · 0.56 km</span></span></li>
+<li class="park-item" data-lat="50.01294444444444" data-lon="20.005055555555554"><span class="step">52.</span><span class="details"><span class="name">Park Kurczaba</span><span class="meta">(Nr. 78) · 0.72 km</span></span></li>
+<li class="park-item" data-lat="50.017694444444444" data-lon="20.011805555555554"><span class="step">53.</span><span class="details"><span class="name">Park Aleksandry Północ</span><span class="meta">(Nr. 47) · 0.63 km</span></span></li>
+<li class="park-item" data-lat="50.02077777777778" data-lon="20.004361111111113"><span class="step">54.</span><span class="details"><span class="name">Park Lilli Wenedy</span><span class="meta">(Nr. 46) · 0.73 km</span></span></li>
+<li class="park-item" data-lat="50.018" data-lon="19.99511111111111"><span class="step">55.</span><span class="details"><span class="name">Park im. Anny i Erazma Jerzmanowskich</span><span class="meta">(Nr. 42) · 1.17 km</span></span></li>
+<li class="park-item" data-lat="50.01463888888889" data-lon="19.979666666666667"><span class="step">56.</span><span class="details"><span class="name">Park Rzeczny Drwinka</span><span class="meta">(Nr. 40) · 1.46 km</span></span></li>
+<li class="park-item" data-lat="50.00980555555556" data-lon="19.96066666666667"><span class="step">57.</span><span class="details"><span class="name">Park Kurdwanów</span><span class="meta">(Nr. 39) · 1.36 km</span></span></li>
+<li class="park-item" data-lat="50.02163888888889" data-lon="19.965166666666665"><span class="step">58.</span><span class="details"><span class="name">Park Duchacki</span><span class="meta">(Nr. 38) · 1.47 km</span></span></li>
+<li class="park-item" data-lat="50.02344444444444" data-lon="19.944777777777777"><span class="step">59.</span><span class="details"><span class="name">Park Łagiewnicki</span><span class="meta">(Nr. 16) · 1.34 km</span></span></li>
+<li class="park-item" data-lat="50.01825" data-lon="19.92791666666667"><span class="step">60.</span><span class="details"><span class="name">Park Solvay</span><span class="meta">(Nr. 17) · 2.09 km</span></span></li>
+<li class="park-item" data-lat="50.002361111111114" data-lon="19.912305555555555"><span class="step">61.</span><span class="details"><span class="name">Park Maćka i Doroty</span><span class="meta">(Nr. 36) · 0.52 km</span></span></li>
+<li class="park-item" data-lat="50.00044444444445" data-lon="19.90575"><span class="step">62.</span><span class="details"><span class="name">Park przy Forcie Borek</span><span class="meta">(Nr. 37) · 3.43 km</span></span></li>
+<li class="park-item" data-lat="50.02802777777778" data-lon="19.92711111111111"><span class="step">63.</span><span class="details"><span class="name">Park Rzeczny Wilga</span><span class="meta">(Nr. 18) · 1.23 km</span></span></li>
+<li class="park-item" data-lat="50.028305555555555" data-lon="19.90988888888889"><span class="step">64.</span><span class="details"><span class="name">Park linearny Ruczaj</span><span class="meta">(Nr. 32) · 0.62 km</span></span></li>
+<li class="park-item" data-lat="50.03380555555555" data-lon="19.908305555555554"><span class="step">65.</span><span class="details"><span class="name">Park Zakrzówek</span><span class="meta">(Nr. 35) · 1.10 km</span></span></li>
+<li class="park-item" data-lat="50.030388888888886" data-lon="19.893916666666666"><span class="step">66.</span><span class="details"><span class="name">Park Pychowicki</span><span class="meta">(Nr. 34) · 2.65 km</span></span></li>
+<li class="park-item" data-lat="50.05419444444444" data-lon="19.89286111111111"><span class="step">67.</span><span class="details"><span class="name">Park Fort 2 &quot;Kościuszko&quot; im. prof. Janusza Bogdanowskiego</span><span class="meta">(Nr. 77) · 1.99 km</span></span></li>
+<li class="park-item" data-lat="50.06586111111111" data-lon="19.871833333333335"><span class="step">68.</span><span class="details"><span class="name">Park Decjusza</span><span class="meta">(Nr. 30) · 0.64 km</span></span></li>
+<li class="park-item" data-lat="50.071083333333334" data-lon="19.868194444444445"><span class="step">69.</span><span class="details"><span class="name">Park Rzeczny Rudawa</span><span class="meta">(Nr. 31) · 1.18 km</span></span></li>
+<li class="park-item" data-lat="50.07911111111111" data-lon="19.85736111111111"><span class="step">70.</span><span class="details"><span class="name">Park Młynówka Królewska</span><span class="meta">(Nr. 28) · 1.85 km</span></span></li>
+<li class="park-item" data-lat="50.094833333333334" data-lon="19.86575"><span class="step">71.</span><span class="details"><span class="name">Park Rzeczny im. Włodzimierza Tetmajera</span><span class="meta">(Nr. 27) · 1.76 km</span></span></li>
+<li class="park-item" data-lat="50.08683333333333" data-lon="19.886972222222223"><span class="step">72.</span><span class="details"><span class="name">Park przy ul. Radzikowskiego</span><span class="meta">(Nr. 26) · 1.10 km</span></span></li>
+<li class="park-item" data-lat="50.08166666666666" data-lon="19.900083333333335"><span class="step">73.</span><span class="details"><span class="name">Park przy Forcie Bronowice</span><span class="meta">(Nr. 25) · 1.00 km</span></span></li>
+<li class="park-item" data-lat="50.07541666666667" data-lon="19.910194444444443"><span class="step">74.</span><span class="details"><span class="name">Park Ogród Łobzów</span><span class="meta">(Nr. 21) · 0.49 km</span></span></li>
+<li class="park-item" data-lat="50.07113888888889" data-lon="19.91175"><span class="step">75.</span><span class="details"><span class="name">Park św. Wincentego a&#x27;Paulo</span><span class="meta">(Nr. 24) · 1.01 km</span></span></li>
+<li class="park-item" data-lat="50.067083333333336" data-lon="19.924333333333333"><span class="step">76.</span><span class="details"><span class="name">Park Krakowski im. M. Grechuty</span><span class="meta">(Nr. 23) · 0.38 km</span></span></li>
+<li class="park-item" data-lat="50.065416666666664" data-lon="19.92897222222222"><span class="step">77.</span><span class="details"><span class="name">Park im. Wisławy Szymborskiej</span><span class="meta">(Nr. 1) · 0.81 km</span></span></li>
+<li class="park-item" data-lat="50.05927777777778" data-lon="19.922944444444443"><span class="step">78.</span><span class="details"><span class="name">Błonia Krakowskie</span><span class="meta">(Nr. 29) · 0.41 km</span></span></li>
+  </ol>
+</aside>
+<script>
+  document.querySelectorAll("#route-sidebar .park-item").forEach(function (item) {
+    item.addEventListener("click", function () {
+      const lat = parseFloat(this.dataset.lat);
+      const lon = parseFloat(this.dataset.lon);
+      const map = Object.values(window).find(function (value) {
+        return value && value.flyTo && value._container;
+      });
+      if (map) {
+        map.flyTo([lat, lon], 15);
+      }
+    });
+  });
+  setTimeout(function () {
+    const map = Object.values(window).find(function (value) {
+      return value && value.invalidateSize && value._container;
+    });
+    if (map) {
+      map.invalidateSize();
+    }
+  }, 250);
+</script>
+    
+            <div class="folium-map" id="map_402800f16b1b3384a73002a06b9af37d" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_402800f16b1b3384a73002a06b9af37d = L.map(
+                "map_402800f16b1b3384a73002a06b9af37d",
+                {
+                    center: [50.06086111111111, 19.91772222222222],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 10,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_e341af89131c2b9094d57256d71274d4 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_e341af89131c2b9094d57256d71274d4.addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+            var poly_line_71093258a7be6202d43b2e28a4fb4229 = L.polyline(
+                [[50.06086111111111, 19.91772222222222], [50.049083333333336, 19.916944444444443], [50.052194444444446, 19.933944444444446], [50.04375, 19.942333333333334], [50.04163888888889, 19.950277777777778], [50.04119444444444, 19.972583333333333], [50.03463888888889, 19.990861111111112], [50.04655555555556, 19.993555555555556], [50.05661111111111, 19.97936111111111], [50.05513888888889, 19.96575], [50.05097222222222, 19.959944444444446], [50.05975, 19.947666666666667], [50.066472222222224, 19.950499999999998], [50.065333333333335, 19.94088888888889], [50.06927777777778, 19.941555555555556], [50.076277777777776, 19.937833333333334], [50.08069444444445, 19.92786111111111], [50.085861111111114, 19.92072222222222], [50.089666666666666, 19.922027777777778], [50.093444444444444, 19.94022222222222], [50.08269444444444, 19.95727777777778], [50.08727777777778, 19.96638888888889], [50.09061111111111, 19.969194444444444], [50.096666666666664, 19.987222222222222], [50.09961111111111, 19.998361111111112], [50.10088888888889, 20.01725], [50.09588888888889, 20.007055555555556], [50.08925, 19.998361111111112], [50.084694444444445, 20.007166666666667], [50.07952777777778, 20.00138888888889], [50.06713888888889, 19.99525], [50.06511111111111, 20.013527777777778], [50.076277777777776, 20.027055555555556], [50.084833333333336, 20.02647222222222], [50.0755, 20.039305555555554], [50.066833333333335, 20.04222222222222], [50.07113888888889, 20.033583333333333], [50.066722222222225, 20.050638888888887], [50.07475, 20.04425], [50.08130555555555, 20.054333333333332], [50.07969444444444, 20.053361111111112], [50.094944444444444, 20.058805555555555], [50.10825, 20.11313888888889], [50.09986111111111, 20.125444444444444], [50.11377777777778, 20.154555555555554], [50.05588888888889, 20.180666666666667], [50.04638888888889, 20.158277777777776], [50.02422222222222, 20.048166666666667], [50.014361111111114, 20.039694444444443], [50.01175, 20.01386111111111], [50.00830555555556, 20.00808333333333], [50.01294444444444, 20.005055555555554], [50.017694444444444, 20.011805555555554], [50.02077777777778, 20.004361111111113], [50.018, 19.99511111111111], [50.01463888888889, 19.979666666666667], [50.00980555555556, 19.96066666666667], [50.02163888888889, 19.965166666666665], [50.02344444444444, 19.944777777777777], [50.01825, 19.92791666666667], [50.002361111111114, 19.912305555555555], [50.00044444444445, 19.90575], [50.02802777777778, 19.92711111111111], [50.028305555555555, 19.90988888888889], [50.03380555555555, 19.908305555555554], [50.030388888888886, 19.893916666666666], [50.05419444444444, 19.89286111111111], [50.06586111111111, 19.871833333333335], [50.071083333333334, 19.868194444444445], [50.07911111111111, 19.85736111111111], [50.094833333333334, 19.86575], [50.08683333333333, 19.886972222222223], [50.08166666666666, 19.900083333333335], [50.07541666666667, 19.910194444444443], [50.07113888888889, 19.91175], [50.067083333333336, 19.924333333333333], [50.065416666666664, 19.92897222222222], [50.05927777777778, 19.922944444444443], [50.06086111111111, 19.91772222222222]],
+                {"bubblingMouseEvents": true, "color": "#2563eb", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#2563eb", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.85, "smoothFactor": 1.0, "stroke": true, "weight": 4}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+            poly_line_71093258a7be6202d43b2e28a4fb4229.bindTooltip(
+                `<div>
+                     Najkrótsza trasa
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ef37d2273eca7216d6590cac08b252ef = L.circleMarker(
+                [50.06086111111111, 19.91772222222222],
+                {"bubblingMouseEvents": true, "color": "#16a34a", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#16a34a", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_395d1173346e81d8f2ff542b3f937c7a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ad672a917a74380e41ae27e324ed823c = $(`<div id="html_ad672a917a74380e41ae27e324ed823c" style="width: 100.0%; height: 100.0%;">1. Park im. Henryka Jordana (Nr. 19)</div>`)[0];
+                popup_395d1173346e81d8f2ff542b3f937c7a.setContent(html_ad672a917a74380e41ae27e324ed823c);
+            
+        
+
+        circle_marker_ef37d2273eca7216d6590cac08b252ef.bindPopup(popup_395d1173346e81d8f2ff542b3f937c7a)
+        ;
+
+        
+    
+    
+            circle_marker_ef37d2273eca7216d6590cac08b252ef.bindTooltip(
+                `<div>
+                     1. Park im. Henryka Jordana
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d736169af0f9538132f9ec13d793ec56 = L.circleMarker(
+                [50.049083333333336, 19.916944444444443],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_414b824e62c895158ade6abef2a922af = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b53e3018e112237f676110481304214d = $(`<div id="html_b53e3018e112237f676110481304214d" style="width: 100.0%; height: 100.0%;">2. Park Dębnicki (Nr. 33)</div>`)[0];
+                popup_414b824e62c895158ade6abef2a922af.setContent(html_b53e3018e112237f676110481304214d);
+            
+        
+
+        circle_marker_d736169af0f9538132f9ec13d793ec56.bindPopup(popup_414b824e62c895158ade6abef2a922af)
+        ;
+
+        
+    
+    
+            circle_marker_d736169af0f9538132f9ec13d793ec56.bindTooltip(
+                `<div>
+                     2. Park Dębnicki
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_11d332092a52ff4a9f61ae8177b3fa20 = L.circleMarker(
+                [50.052194444444446, 19.933944444444446],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_dfbec0f333960ce74818b036a83d1a70 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2fdd49b7bed5807ffd68c7bec393073e = $(`<div id="html_2fdd49b7bed5807ffd68c7bec393073e" style="width: 100.0%; height: 100.0%;">3. Bulwary Wisły (Nr. 4)</div>`)[0];
+                popup_dfbec0f333960ce74818b036a83d1a70.setContent(html_2fdd49b7bed5807ffd68c7bec393073e);
+            
+        
+
+        circle_marker_11d332092a52ff4a9f61ae8177b3fa20.bindPopup(popup_dfbec0f333960ce74818b036a83d1a70)
+        ;
+
+        
+    
+    
+            circle_marker_11d332092a52ff4a9f61ae8177b3fa20.bindTooltip(
+                `<div>
+                     3. Bulwary Wisły
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_667347b828abce5ee78ffb5acf18c80c = L.circleMarker(
+                [50.04375, 19.942333333333334],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_bbc8e3fef7e78d0cae438d61eba3aa4a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b7888fe7813c16ff93a5e956e01985b5 = $(`<div id="html_b7888fe7813c16ff93a5e956e01985b5" style="width: 100.0%; height: 100.0%;">4. Planty im. Floriana Nowackiego (Nr. 52)</div>`)[0];
+                popup_bbc8e3fef7e78d0cae438d61eba3aa4a.setContent(html_b7888fe7813c16ff93a5e956e01985b5);
+            
+        
+
+        circle_marker_667347b828abce5ee78ffb5acf18c80c.bindPopup(popup_bbc8e3fef7e78d0cae438d61eba3aa4a)
+        ;
+
+        
+    
+    
+            circle_marker_667347b828abce5ee78ffb5acf18c80c.bindTooltip(
+                `<div>
+                     4. Planty im. Floriana Nowackiego
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ec2f08f326addc87ed717e8334623d9d = L.circleMarker(
+                [50.04163888888889, 19.950277777777778],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_769cf4ab9c267d93fdc5068bb11b80c1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8b27e07d7bce1a11af3f38b637b3d9de = $(`<div id="html_8b27e07d7bce1a11af3f38b637b3d9de" style="width: 100.0%; height: 100.0%;">5. Park im. Wojciecha Bednarskiego (Nr. 48)</div>`)[0];
+                popup_769cf4ab9c267d93fdc5068bb11b80c1.setContent(html_8b27e07d7bce1a11af3f38b637b3d9de);
+            
+        
+
+        circle_marker_ec2f08f326addc87ed717e8334623d9d.bindPopup(popup_769cf4ab9c267d93fdc5068bb11b80c1)
+        ;
+
+        
+    
+    
+            circle_marker_ec2f08f326addc87ed717e8334623d9d.bindTooltip(
+                `<div>
+                     5. Park im. Wojciecha Bednarskiego
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_81de2599a16663344f8572df902d5e58 = L.circleMarker(
+                [50.04119444444444, 19.972583333333333],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_ac59e9a2c0228888085b7565e5b8525d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3e8be5fe225e5d5e3cf06d7a004e03be = $(`<div id="html_3e8be5fe225e5d5e3cf06d7a004e03be" style="width: 100.0%; height: 100.0%;">6. Park Staw Płaszowski (Nr. 51)</div>`)[0];
+                popup_ac59e9a2c0228888085b7565e5b8525d.setContent(html_3e8be5fe225e5d5e3cf06d7a004e03be);
+            
+        
+
+        circle_marker_81de2599a16663344f8572df902d5e58.bindPopup(popup_ac59e9a2c0228888085b7565e5b8525d)
+        ;
+
+        
+    
+    
+            circle_marker_81de2599a16663344f8572df902d5e58.bindTooltip(
+                `<div>
+                     6. Park Staw Płaszowski
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6603fe66960d4408844810c6d7308153 = L.circleMarker(
+                [50.03463888888889, 19.990861111111112],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_cc77f8ab3610faa29fd1f7dadd9cb819 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4a1916168c16d2d7e98a23fdb1fc770d = $(`<div id="html_4a1916168c16d2d7e98a23fdb1fc770d" style="width: 100.0%; height: 100.0%;">7. Park Miejski Bagry Wielkie (Nr. 53)</div>`)[0];
+                popup_cc77f8ab3610faa29fd1f7dadd9cb819.setContent(html_4a1916168c16d2d7e98a23fdb1fc770d);
+            
+        
+
+        circle_marker_6603fe66960d4408844810c6d7308153.bindPopup(popup_cc77f8ab3610faa29fd1f7dadd9cb819)
+        ;
+
+        
+    
+    
+            circle_marker_6603fe66960d4408844810c6d7308153.bindTooltip(
+                `<div>
+                     7. Park Miejski Bagry Wielkie
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0d205e77580b62cfb6dff8c322ba1b87 = L.circleMarker(
+                [50.04655555555556, 19.993555555555556],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_72c7635e7bbc6fdece5d0b4398168cb7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_85fcbe07680355b253ebafb4570ad64d = $(`<div id="html_85fcbe07680355b253ebafb4570ad64d" style="width: 100.0%; height: 100.0%;">8. Park Rzeczny Ogród Płaszów (Nr. 49)</div>`)[0];
+                popup_72c7635e7bbc6fdece5d0b4398168cb7.setContent(html_85fcbe07680355b253ebafb4570ad64d);
+            
+        
+
+        circle_marker_0d205e77580b62cfb6dff8c322ba1b87.bindPopup(popup_72c7635e7bbc6fdece5d0b4398168cb7)
+        ;
+
+        
+    
+    
+            circle_marker_0d205e77580b62cfb6dff8c322ba1b87.bindTooltip(
+                `<div>
+                     8. Park Rzeczny Ogród Płaszów
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ceb3a43b1bd92a96d97cf8c859dd0667 = L.circleMarker(
+                [50.05661111111111, 19.97936111111111],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_2d88cdb54d82ffbc49b1b0db793deb0f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_90c921d05ea47333f05ac93720a186a7 = $(`<div id="html_90c921d05ea47333f05ac93720a186a7" style="width: 100.0%; height: 100.0%;">9. Park Dąbie (Nr. 6)</div>`)[0];
+                popup_2d88cdb54d82ffbc49b1b0db793deb0f.setContent(html_90c921d05ea47333f05ac93720a186a7);
+            
+        
+
+        circle_marker_ceb3a43b1bd92a96d97cf8c859dd0667.bindPopup(popup_2d88cdb54d82ffbc49b1b0db793deb0f)
+        ;
+
+        
+    
+    
+            circle_marker_ceb3a43b1bd92a96d97cf8c859dd0667.bindTooltip(
+                `<div>
+                     9. Park Dąbie
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f365597d51e4cc4c7778d7279ae14ad4 = L.circleMarker(
+                [50.05513888888889, 19.96575],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_9b40fd0c6cbe79463bfbd335f93deea7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e462388f1025676a655ea84ae1da732b = $(`<div id="html_e462388f1025676a655ea84ae1da732b" style="width: 100.0%; height: 100.0%;">10. Park Grzegórzecki (Nr. 5)</div>`)[0];
+                popup_9b40fd0c6cbe79463bfbd335f93deea7.setContent(html_e462388f1025676a655ea84ae1da732b);
+            
+        
+
+        circle_marker_f365597d51e4cc4c7778d7279ae14ad4.bindPopup(popup_9b40fd0c6cbe79463bfbd335f93deea7)
+        ;
+
+        
+    
+    
+            circle_marker_f365597d51e4cc4c7778d7279ae14ad4.bindTooltip(
+                `<div>
+                     10. Park Grzegórzecki
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_423fbfb4aff095072ab666f94c8f76cf = L.circleMarker(
+                [50.05097222222222, 19.959944444444446],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_1951d9bbe86825545d0a59bfdeff27f7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8e0653d28c51cd1816b73d07ae119cc1 = $(`<div id="html_8e0653d28c51cd1816b73d07ae119cc1" style="width: 100.0%; height: 100.0%;">11. Park Stacja Wisła (Nr. 50)</div>`)[0];
+                popup_1951d9bbe86825545d0a59bfdeff27f7.setContent(html_8e0653d28c51cd1816b73d07ae119cc1);
+            
+        
+
+        circle_marker_423fbfb4aff095072ab666f94c8f76cf.bindPopup(popup_1951d9bbe86825545d0a59bfdeff27f7)
+        ;
+
+        
+    
+    
+            circle_marker_423fbfb4aff095072ab666f94c8f76cf.bindTooltip(
+                `<div>
+                     11. Park Stacja Wisła
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3c07ac03dff874e6ee8986a1a78b23ae = L.circleMarker(
+                [50.05975, 19.947666666666667],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_3d57e33e41d4e316a96b8a8bb18792b9 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9800d685062efa8d5dcaf99e72886842 = $(`<div id="html_9800d685062efa8d5dcaf99e72886842" style="width: 100.0%; height: 100.0%;">12. Park Kolejowy (Nr. 8)</div>`)[0];
+                popup_3d57e33e41d4e316a96b8a8bb18792b9.setContent(html_9800d685062efa8d5dcaf99e72886842);
+            
+        
+
+        circle_marker_3c07ac03dff874e6ee8986a1a78b23ae.bindPopup(popup_3d57e33e41d4e316a96b8a8bb18792b9)
+        ;
+
+        
+    
+    
+            circle_marker_3c07ac03dff874e6ee8986a1a78b23ae.bindTooltip(
+                `<div>
+                     12. Park Kolejowy
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_be85b8e710aed19666125e3a2bf8c09f = L.circleMarker(
+                [50.066472222222224, 19.950499999999998],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_8323f221316e50ca05575e7c4460fd81 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1656257ce20ee150880cfc3fd8681eb2 = $(`<div id="html_1656257ce20ee150880cfc3fd8681eb2" style="width: 100.0%; height: 100.0%;">13. Park Strzelecki (Nr. 7)</div>`)[0];
+                popup_8323f221316e50ca05575e7c4460fd81.setContent(html_1656257ce20ee150880cfc3fd8681eb2);
+            
+        
+
+        circle_marker_be85b8e710aed19666125e3a2bf8c09f.bindPopup(popup_8323f221316e50ca05575e7c4460fd81)
+        ;
+
+        
+    
+    
+            circle_marker_be85b8e710aed19666125e3a2bf8c09f.bindTooltip(
+                `<div>
+                     13. Park Strzelecki
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_825207cd27b95cbd64d24b62d21f770d = L.circleMarker(
+                [50.065333333333335, 19.94088888888889],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_febc51e15f884ca53249e2dd4bed6bb3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0643ec0463bd74514af69a97f7c422ef = $(`<div id="html_0643ec0463bd74514af69a97f7c422ef" style="width: 100.0%; height: 100.0%;">14. Planty Krakowskie (Nr. 2)</div>`)[0];
+                popup_febc51e15f884ca53249e2dd4bed6bb3.setContent(html_0643ec0463bd74514af69a97f7c422ef);
+            
+        
+
+        circle_marker_825207cd27b95cbd64d24b62d21f770d.bindPopup(popup_febc51e15f884ca53249e2dd4bed6bb3)
+        ;
+
+        
+    
+    
+            circle_marker_825207cd27b95cbd64d24b62d21f770d.bindTooltip(
+                `<div>
+                     14. Planty Krakowskie
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_cab07f299175a8ea365153eed7404349 = L.circleMarker(
+                [50.06927777777778, 19.941555555555556],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_585e9cbc3aa82ada53890859f68c93fd = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e14fdaec5364e053e4896527307cd686 = $(`<div id="html_e14fdaec5364e053e4896527307cd686" style="width: 100.0%; height: 100.0%;">15. Park Jalu Kurka (Nr. 3)</div>`)[0];
+                popup_585e9cbc3aa82ada53890859f68c93fd.setContent(html_e14fdaec5364e053e4896527307cd686);
+            
+        
+
+        circle_marker_cab07f299175a8ea365153eed7404349.bindPopup(popup_585e9cbc3aa82ada53890859f68c93fd)
+        ;
+
+        
+    
+    
+            circle_marker_cab07f299175a8ea365153eed7404349.bindTooltip(
+                `<div>
+                     15. Park Jalu Kurka
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_458228556b5445d6eac7e011ac62cfcc = L.circleMarker(
+                [50.076277777777776, 19.937833333333334],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_951778634bcce669d10fa91722c6dee8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0869daf0ad1a7642f9bd0c923bcb1911 = $(`<div id="html_0869daf0ad1a7642f9bd0c923bcb1911" style="width: 100.0%; height: 100.0%;">16. Park Kleparski (Nr. 20)</div>`)[0];
+                popup_951778634bcce669d10fa91722c6dee8.setContent(html_0869daf0ad1a7642f9bd0c923bcb1911);
+            
+        
+
+        circle_marker_458228556b5445d6eac7e011ac62cfcc.bindPopup(popup_951778634bcce669d10fa91722c6dee8)
+        ;
+
+        
+    
+    
+            circle_marker_458228556b5445d6eac7e011ac62cfcc.bindTooltip(
+                `<div>
+                     16. Park Kleparski
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8cebee2068c1e685b3fca38753ce30e3 = L.circleMarker(
+                [50.08069444444445, 19.92786111111111],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_613709b7569d1f423ccd583ff9e19aaf = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_063082f138316fcac9d15caeee17fe98 = $(`<div id="html_063082f138316fcac9d15caeee17fe98" style="width: 100.0%; height: 100.0%;">17. Park przy ul. Łokietka (Nr. 22)</div>`)[0];
+                popup_613709b7569d1f423ccd583ff9e19aaf.setContent(html_063082f138316fcac9d15caeee17fe98);
+            
+        
+
+        circle_marker_8cebee2068c1e685b3fca38753ce30e3.bindPopup(popup_613709b7569d1f423ccd583ff9e19aaf)
+        ;
+
+        
+    
+    
+            circle_marker_8cebee2068c1e685b3fca38753ce30e3.bindTooltip(
+                `<div>
+                     17. Park przy ul. Łokietka
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7344cfd1c3aa7fe1debea40e10251a2c = L.circleMarker(
+                [50.085861111111114, 19.92072222222222],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_c060c37abcec4dfa1515c7ebd6953ff4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_339f5a3301eb52ceff755c84be4f3ff7 = $(`<div id="html_339f5a3301eb52ceff755c84be4f3ff7" style="width: 100.0%; height: 100.0%;">18. Park im. Stanisława Wyspiańskiego (Nr. 13)</div>`)[0];
+                popup_c060c37abcec4dfa1515c7ebd6953ff4.setContent(html_339f5a3301eb52ceff755c84be4f3ff7);
+            
+        
+
+        circle_marker_7344cfd1c3aa7fe1debea40e10251a2c.bindPopup(popup_c060c37abcec4dfa1515c7ebd6953ff4)
+        ;
+
+        
+    
+    
+            circle_marker_7344cfd1c3aa7fe1debea40e10251a2c.bindTooltip(
+                `<div>
+                     18. Park im. Stanisława Wyspiańskiego
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_69555ce4e746c5afd203ef94ab8f3dc3 = L.circleMarker(
+                [50.089666666666666, 19.922027777777778],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_3252e82722933953fbc0bbe7a43e9154 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_052c003083e4dbdcad37c7d7c8a34b2a = $(`<div id="html_052c003083e4dbdcad37c7d7c8a34b2a" style="width: 100.0%; height: 100.0%;">19. Park Krowoderski (Nr. 15)</div>`)[0];
+                popup_3252e82722933953fbc0bbe7a43e9154.setContent(html_052c003083e4dbdcad37c7d7c8a34b2a);
+            
+        
+
+        circle_marker_69555ce4e746c5afd203ef94ab8f3dc3.bindPopup(popup_3252e82722933953fbc0bbe7a43e9154)
+        ;
+
+        
+    
+    
+            circle_marker_69555ce4e746c5afd203ef94ab8f3dc3.bindTooltip(
+                `<div>
+                     19. Park Krowoderski
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_be9995e26ee1384864ace95fe8ff54d0 = L.circleMarker(
+                [50.093444444444444, 19.94022222222222],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_20694af0982529b3fcb0416ec5d057a4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_99c819bd2f3734291795181667e9aa20 = $(`<div id="html_99c819bd2f3734291795181667e9aa20" style="width: 100.0%; height: 100.0%;">20. Park im. Tadeusza Kościuszki (Nr. 14)</div>`)[0];
+                popup_20694af0982529b3fcb0416ec5d057a4.setContent(html_99c819bd2f3734291795181667e9aa20);
+            
+        
+
+        circle_marker_be9995e26ee1384864ace95fe8ff54d0.bindPopup(popup_20694af0982529b3fcb0416ec5d057a4)
+        ;
+
+        
+    
+    
+            circle_marker_be9995e26ee1384864ace95fe8ff54d0.bindTooltip(
+                `<div>
+                     20. Park im. Tadeusza Kościuszki
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e975339988358dfad2e1666ed3555243 = L.circleMarker(
+                [50.08269444444444, 19.95727777777778],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_908a30ff6fb41a346d14d95688e3d13a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_32afaafd7bc41fc0695f6a822957c9cd = $(`<div id="html_32afaafd7bc41fc0695f6a822957c9cd" style="width: 100.0%; height: 100.0%;">21. Park Rzeczny Białucha (Nr. 10)</div>`)[0];
+                popup_908a30ff6fb41a346d14d95688e3d13a.setContent(html_32afaafd7bc41fc0695f6a822957c9cd);
+            
+        
+
+        circle_marker_e975339988358dfad2e1666ed3555243.bindPopup(popup_908a30ff6fb41a346d14d95688e3d13a)
+        ;
+
+        
+    
+    
+            circle_marker_e975339988358dfad2e1666ed3555243.bindTooltip(
+                `<div>
+                     21. Park Rzeczny Białucha
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3a17531006b6b268b5a6329540458301 = L.circleMarker(
+                [50.08727777777778, 19.96638888888889],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_16d337f431e6ed61e3fd629e4216ee32 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_efa3ccbab3bf73066aadd78f22fa544e = $(`<div id="html_efa3ccbab3bf73066aadd78f22fa544e" style="width: 100.0%; height: 100.0%;">22. Park Zaczarowanej Dorożki (Stawy Dominikańskie) (Nr. 12)</div>`)[0];
+                popup_16d337f431e6ed61e3fd629e4216ee32.setContent(html_efa3ccbab3bf73066aadd78f22fa544e);
+            
+        
+
+        circle_marker_3a17531006b6b268b5a6329540458301.bindPopup(popup_16d337f431e6ed61e3fd629e4216ee32)
+        ;
+
+        
+    
+    
+            circle_marker_3a17531006b6b268b5a6329540458301.bindTooltip(
+                `<div>
+                     22. Park Zaczarowanej Dorożki (Stawy Dominikańskie)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e1e1a1e26b7a5edf124bc5726a589897 = L.circleMarker(
+                [50.09061111111111, 19.969194444444444],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_9c5562edfec696341e14719e6ef44a9e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_08a27c1e4d0b4aedd059b87eec4437f4 = $(`<div id="html_08a27c1e4d0b4aedd059b87eec4437f4" style="width: 100.0%; height: 100.0%;">23. Park Ogród nad Sudołem (Nr. 9)</div>`)[0];
+                popup_9c5562edfec696341e14719e6ef44a9e.setContent(html_08a27c1e4d0b4aedd059b87eec4437f4);
+            
+        
+
+        circle_marker_e1e1a1e26b7a5edf124bc5726a589897.bindPopup(popup_9c5562edfec696341e14719e6ef44a9e)
+        ;
+
+        
+    
+    
+            circle_marker_e1e1a1e26b7a5edf124bc5726a589897.bindTooltip(
+                `<div>
+                     23. Park Ogród nad Sudołem
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f71942086777ff875cfec6f078479812 = L.circleMarker(
+                [50.096666666666664, 19.987222222222222],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_ccc91e6b67cd0e454d587a187ebf56a4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_211cbe72b2223f3635192981f78fa0eb = $(`<div id="html_211cbe72b2223f3635192981f78fa0eb" style="width: 100.0%; height: 100.0%;">24. Park Reduta (Nr. 11)</div>`)[0];
+                popup_ccc91e6b67cd0e454d587a187ebf56a4.setContent(html_211cbe72b2223f3635192981f78fa0eb);
+            
+        
+
+        circle_marker_f71942086777ff875cfec6f078479812.bindPopup(popup_ccc91e6b67cd0e454d587a187ebf56a4)
+        ;
+
+        
+    
+    
+            circle_marker_f71942086777ff875cfec6f078479812.bindTooltip(
+                `<div>
+                     24. Park Reduta
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a810ceb9c6cbcd79e3db14f2857b7972 = L.circleMarker(
+                [50.09961111111111, 19.998361111111112],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_cfbc85c8855e0ac3d3fb8aa7e246e587 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bff7cc3e6dc57e787467f71df02db26c = $(`<div id="html_bff7cc3e6dc57e787467f71df02db26c" style="width: 100.0%; height: 100.0%;">25. Fort Batowice (Nr. 58)</div>`)[0];
+                popup_cfbc85c8855e0ac3d3fb8aa7e246e587.setContent(html_bff7cc3e6dc57e787467f71df02db26c);
+            
+        
+
+        circle_marker_a810ceb9c6cbcd79e3db14f2857b7972.bindPopup(popup_cfbc85c8855e0ac3d3fb8aa7e246e587)
+        ;
+
+        
+    
+    
+            circle_marker_a810ceb9c6cbcd79e3db14f2857b7972.bindTooltip(
+                `<div>
+                     25. Fort Batowice
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_69e5e6698e33a04f3ebf439f2418499f = L.circleMarker(
+                [50.10088888888889, 20.01725],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_2183a9d82b0c72db5c47714d303d3c75 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c9e5eb4e3c7efbe79959aaa5dbd56d38 = $(`<div id="html_c9e5eb4e3c7efbe79959aaa5dbd56d38" style="width: 100.0%; height: 100.0%;">26. Fort Mistrzejowice (Nr. 61)</div>`)[0];
+                popup_2183a9d82b0c72db5c47714d303d3c75.setContent(html_c9e5eb4e3c7efbe79959aaa5dbd56d38);
+            
+        
+
+        circle_marker_69e5e6698e33a04f3ebf439f2418499f.bindPopup(popup_2183a9d82b0c72db5c47714d303d3c75)
+        ;
+
+        
+    
+    
+            circle_marker_69e5e6698e33a04f3ebf439f2418499f.bindTooltip(
+                `<div>
+                     26. Fort Mistrzejowice
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d7b8cb070f319372e63d6684c880aa59 = L.circleMarker(
+                [50.09588888888889, 20.007055555555556],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_80ca361bff673df3e2e4e9430339f58e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b4f436075e77444751a1211cef5ceb02 = $(`<div id="html_b4f436075e77444751a1211cef5ceb02" style="width: 100.0%; height: 100.0%;">27. Planty Mistrzejowickie (Nr. 60)</div>`)[0];
+                popup_80ca361bff673df3e2e4e9430339f58e.setContent(html_b4f436075e77444751a1211cef5ceb02);
+            
+        
+
+        circle_marker_d7b8cb070f319372e63d6684c880aa59.bindPopup(popup_80ca361bff673df3e2e4e9430339f58e)
+        ;
+
+        
+    
+    
+            circle_marker_d7b8cb070f319372e63d6684c880aa59.bindTooltip(
+                `<div>
+                     27. Planty Mistrzejowickie
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_13aa81285c6b9ee38e4a14c73f4fdbc3 = L.circleMarker(
+                [50.08925, 19.998361111111112],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_89c178ae2ed2d1896f56f1051e6fd268 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_18db71e46bf7e4c5afb38e395eb34948 = $(`<div id="html_18db71e46bf7e4c5afb38e395eb34948" style="width: 100.0%; height: 100.0%;">28. Park Tysiąclecia (Nr. 59)</div>`)[0];
+                popup_89c178ae2ed2d1896f56f1051e6fd268.setContent(html_18db71e46bf7e4c5afb38e395eb34948);
+            
+        
+
+        circle_marker_13aa81285c6b9ee38e4a14c73f4fdbc3.bindPopup(popup_89c178ae2ed2d1896f56f1051e6fd268)
+        ;
+
+        
+    
+    
+            circle_marker_13aa81285c6b9ee38e4a14c73f4fdbc3.bindTooltip(
+                `<div>
+                     28. Park Tysiąclecia
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c139cb41b983b9804e222617a0c72d3d = L.circleMarker(
+                [50.084694444444445, 20.007166666666667],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_26bea0286a1b7d3172202f6568c39e0c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_82764f9bcd77b92d90ef616980fcfbf1 = $(`<div id="html_82764f9bcd77b92d90ef616980fcfbf1" style="width: 100.0%; height: 100.0%;">29. Park pil. gen. S. Skalskiego (Nr. 57)</div>`)[0];
+                popup_26bea0286a1b7d3172202f6568c39e0c.setContent(html_82764f9bcd77b92d90ef616980fcfbf1);
+            
+        
+
+        circle_marker_c139cb41b983b9804e222617a0c72d3d.bindPopup(popup_26bea0286a1b7d3172202f6568c39e0c)
+        ;
+
+        
+    
+    
+            circle_marker_c139cb41b983b9804e222617a0c72d3d.bindTooltip(
+                `<div>
+                     29. Park pil. gen. S. Skalskiego
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2227d80b5c1c1a304cfd03b5928d055e = L.circleMarker(
+                [50.07952777777778, 20.00138888888889],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_cf9dbbad91f65594b24292cdbc5f5bb4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c494a2dc85afb57098baaf8c98e4c01a = $(`<div id="html_c494a2dc85afb57098baaf8c98e4c01a" style="width: 100.0%; height: 100.0%;">30. Park Czyżyny (Nr. 54)</div>`)[0];
+                popup_cf9dbbad91f65594b24292cdbc5f5bb4.setContent(html_c494a2dc85afb57098baaf8c98e4c01a);
+            
+        
+
+        circle_marker_2227d80b5c1c1a304cfd03b5928d055e.bindPopup(popup_cf9dbbad91f65594b24292cdbc5f5bb4)
+        ;
+
+        
+    
+    
+            circle_marker_2227d80b5c1c1a304cfd03b5928d055e.bindTooltip(
+                `<div>
+                     30. Park Czyżyny
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2c3597901fa4487950ecad110bb8e93c = L.circleMarker(
+                [50.06713888888889, 19.99525],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_f492269be42c55753cd68155a2a16bc0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_361b282ca9de7e58f7944a966e762498 = $(`<div id="html_361b282ca9de7e58f7944a966e762498" style="width: 100.0%; height: 100.0%;">31. Park Lotników Polskich (Nr. 55)</div>`)[0];
+                popup_f492269be42c55753cd68155a2a16bc0.setContent(html_361b282ca9de7e58f7944a966e762498);
+            
+        
+
+        circle_marker_2c3597901fa4487950ecad110bb8e93c.bindPopup(popup_f492269be42c55753cd68155a2a16bc0)
+        ;
+
+        
+    
+    
+            circle_marker_2c3597901fa4487950ecad110bb8e93c.bindTooltip(
+                `<div>
+                     31. Park Lotników Polskich
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7f9197e52635207af1ab4c0be8ace154 = L.circleMarker(
+                [50.06511111111111, 20.013527777777778],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_378a4427b16514257ea57c7e926b668b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8a475a5f942763a114786963f2b03c17 = $(`<div id="html_8a475a5f942763a114786963f2b03c17" style="width: 100.0%; height: 100.0%;">32. Park Woźniców (Nr. 56)</div>`)[0];
+                popup_378a4427b16514257ea57c7e926b668b.setContent(html_8a475a5f942763a114786963f2b03c17);
+            
+        
+
+        circle_marker_7f9197e52635207af1ab4c0be8ace154.bindPopup(popup_378a4427b16514257ea57c7e926b668b)
+        ;
+
+        
+    
+    
+            circle_marker_7f9197e52635207af1ab4c0be8ace154.bindTooltip(
+                `<div>
+                     32. Park Woźniców
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d941299e3b513994bba6fa5e8d7ee32b = L.circleMarker(
+                [50.076277777777776, 20.027055555555556],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_452b86c1f65dca9d548b02036d5c54b7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7baaa0b46d752b634b8ddc292cea5876 = $(`<div id="html_7baaa0b46d752b634b8ddc292cea5876" style="width: 100.0%; height: 100.0%;">33. Park Wiśniowy Sad (Nr. 74)</div>`)[0];
+                popup_452b86c1f65dca9d548b02036d5c54b7.setContent(html_7baaa0b46d752b634b8ddc292cea5876);
+            
+        
+
+        circle_marker_d941299e3b513994bba6fa5e8d7ee32b.bindPopup(popup_452b86c1f65dca9d548b02036d5c54b7)
+        ;
+
+        
+    
+    
+            circle_marker_d941299e3b513994bba6fa5e8d7ee32b.bindTooltip(
+                `<div>
+                     33. Park Wiśniowy Sad
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e1e73fe0f74c1ef4f3a08a508ce5d693 = L.circleMarker(
+                [50.084833333333336, 20.02647222222222],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_2523a9c7806cae49ac11613716ac11c1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_705c91a4d44a3fb02f6590041b061a7a = $(`<div id="html_705c91a4d44a3fb02f6590041b061a7a" style="width: 100.0%; height: 100.0%;">34. Planty Bieńczyckie (Nr. 63)</div>`)[0];
+                popup_2523a9c7806cae49ac11613716ac11c1.setContent(html_705c91a4d44a3fb02f6590041b061a7a);
+            
+        
+
+        circle_marker_e1e73fe0f74c1ef4f3a08a508ce5d693.bindPopup(popup_2523a9c7806cae49ac11613716ac11c1)
+        ;
+
+        
+    
+    
+            circle_marker_e1e73fe0f74c1ef4f3a08a508ce5d693.bindTooltip(
+                `<div>
+                     34. Planty Bieńczyckie
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5ec15bd5870596a2a60515daecc19a0e = L.circleMarker(
+                [50.0755, 20.039305555555554],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_d4fcc6e05557f335c409548847b11ebf = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a2a6758ec7e2d4b295c2b744a1940beb = $(`<div id="html_a2a6758ec7e2d4b295c2b744a1940beb" style="width: 100.0%; height: 100.0%;">35. Park Ratuszowy (Nr. 72)</div>`)[0];
+                popup_d4fcc6e05557f335c409548847b11ebf.setContent(html_a2a6758ec7e2d4b295c2b744a1940beb);
+            
+        
+
+        circle_marker_5ec15bd5870596a2a60515daecc19a0e.bindPopup(popup_d4fcc6e05557f335c409548847b11ebf)
+        ;
+
+        
+    
+    
+            circle_marker_5ec15bd5870596a2a60515daecc19a0e.bindTooltip(
+                `<div>
+                     35. Park Ratuszowy
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_974365a97e18e8dc92bf6ade7ff024f2 = L.circleMarker(
+                [50.066833333333335, 20.04222222222222],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_9663054792df21f240b41475b0623019 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8a968a67b9235947c56e2da7f2a79d1a = $(`<div id="html_8a968a67b9235947c56e2da7f2a79d1a" style="width: 100.0%; height: 100.0%;">36. Park im. Stefana Żeromskiego (Nr. 69)</div>`)[0];
+                popup_9663054792df21f240b41475b0623019.setContent(html_8a968a67b9235947c56e2da7f2a79d1a);
+            
+        
+
+        circle_marker_974365a97e18e8dc92bf6ade7ff024f2.bindPopup(popup_9663054792df21f240b41475b0623019)
+        ;
+
+        
+    
+    
+            circle_marker_974365a97e18e8dc92bf6ade7ff024f2.bindTooltip(
+                `<div>
+                     36. Park im. Stefana Żeromskiego
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3ae2da9fa3f403c9b2e4213880278e04 = L.circleMarker(
+                [50.07113888888889, 20.033583333333333],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_f5665f652c82fdcf7ba16501b8d3b058 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_fcfd42adaa1ddce99469fb18ee91f0ae = $(`<div id="html_fcfd42adaa1ddce99469fb18ee91f0ae" style="width: 100.0%; height: 100.0%;">37. Park Kultury (Nr. 71)</div>`)[0];
+                popup_f5665f652c82fdcf7ba16501b8d3b058.setContent(html_fcfd42adaa1ddce99469fb18ee91f0ae);
+            
+        
+
+        circle_marker_3ae2da9fa3f403c9b2e4213880278e04.bindPopup(popup_f5665f652c82fdcf7ba16501b8d3b058)
+        ;
+
+        
+    
+    
+            circle_marker_3ae2da9fa3f403c9b2e4213880278e04.bindTooltip(
+                `<div>
+                     37. Park Kultury
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fb2445395a1f38704971cd7827f72d69 = L.circleMarker(
+                [50.066722222222225, 20.050638888888887],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_c6db7d3d893da598a8844795f6a2795f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1f07b612f98374abf07ed3219ad35776 = $(`<div id="html_1f07b612f98374abf07ed3219ad35776" style="width: 100.0%; height: 100.0%;">38. Park Klasztorna (Nr. 70)</div>`)[0];
+                popup_c6db7d3d893da598a8844795f6a2795f.setContent(html_1f07b612f98374abf07ed3219ad35776);
+            
+        
+
+        circle_marker_fb2445395a1f38704971cd7827f72d69.bindPopup(popup_c6db7d3d893da598a8844795f6a2795f)
+        ;
+
+        
+    
+    
+            circle_marker_fb2445395a1f38704971cd7827f72d69.bindTooltip(
+                `<div>
+                     38. Park Klasztorna
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_74305fa148fdb6360f352c1da4a4638d = L.circleMarker(
+                [50.07475, 20.04425],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_b103840ce4818e3cb4fe5c47cae765f1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_428d4cb7cd4b1d8a724e69be47047f31 = $(`<div id="html_428d4cb7cd4b1d8a724e69be47047f31" style="width: 100.0%; height: 100.0%;">39. Park Szwedzki (Nr. 73)</div>`)[0];
+                popup_b103840ce4818e3cb4fe5c47cae765f1.setContent(html_428d4cb7cd4b1d8a724e69be47047f31);
+            
+        
+
+        circle_marker_74305fa148fdb6360f352c1da4a4638d.bindPopup(popup_b103840ce4818e3cb4fe5c47cae765f1)
+        ;
+
+        
+    
+    
+            circle_marker_74305fa148fdb6360f352c1da4a4638d.bindTooltip(
+                `<div>
+                     39. Park Szwedzki
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9dce538758a00be14d3605664f460b50 = L.circleMarker(
+                [50.08130555555555, 20.054333333333332],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_908450561c983abbf286415886e546fd = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2c14ef28292c3d78b9d80de99ee95d4f = $(`<div id="html_2c14ef28292c3d78b9d80de99ee95d4f" style="width: 100.0%; height: 100.0%;">40. Park Jana Matejki (Nr. 65)</div>`)[0];
+                popup_908450561c983abbf286415886e546fd.setContent(html_2c14ef28292c3d78b9d80de99ee95d4f);
+            
+        
+
+        circle_marker_9dce538758a00be14d3605664f460b50.bindPopup(popup_908450561c983abbf286415886e546fd)
+        ;
+
+        
+    
+    
+            circle_marker_9dce538758a00be14d3605664f460b50.bindTooltip(
+                `<div>
+                     40. Park Jana Matejki
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0e7e778f58e0993e99b4d582ca7e668e = L.circleMarker(
+                [50.07969444444444, 20.053361111111112],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_7ccef770a9a39676c45fcba034319c6a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7c7c959a635451feb25a904a094db143 = $(`<div id="html_7c7c959a635451feb25a904a094db143" style="width: 100.0%; height: 100.0%;">41. Park Zalew Nowohucki (Nr. 62)</div>`)[0];
+                popup_7ccef770a9a39676c45fcba034319c6a.setContent(html_7c7c959a635451feb25a904a094db143);
+            
+        
+
+        circle_marker_0e7e778f58e0993e99b4d582ca7e668e.bindPopup(popup_7ccef770a9a39676c45fcba034319c6a)
+        ;
+
+        
+    
+    
+            circle_marker_0e7e778f58e0993e99b4d582ca7e668e.bindTooltip(
+                `<div>
+                     41. Park Zalew Nowohucki
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4fe55aaffa40c444c0bcdaa77e705179 = L.circleMarker(
+                [50.094944444444444, 20.058805555555555],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_cd0aaa948e8ae5adf39dbb028c58bc6c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b3c3a4b71eb1d2b5c4a84b71aaafff48 = $(`<div id="html_b3c3a4b71eb1d2b5c4a84b71aaafff48" style="width: 100.0%; height: 100.0%;">42. Park Zielony Jar Wandy (Nr. 67)</div>`)[0];
+                popup_cd0aaa948e8ae5adf39dbb028c58bc6c.setContent(html_b3c3a4b71eb1d2b5c4a84b71aaafff48);
+            
+        
+
+        circle_marker_4fe55aaffa40c444c0bcdaa77e705179.bindPopup(popup_cd0aaa948e8ae5adf39dbb028c58bc6c)
+        ;
+
+        
+    
+    
+            circle_marker_4fe55aaffa40c444c0bcdaa77e705179.bindTooltip(
+                `<div>
+                     42. Park Zielony Jar Wandy
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_808ed039f5bdaa520d3d02c1f0e8da6c = L.circleMarker(
+                [50.10825, 20.11313888888889],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_70a1ae53aa128005e0ddf1d47d86dd4f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c9d1cd288f35a12663ad1c528010aab4 = $(`<div id="html_c9d1cd288f35a12663ad1c528010aab4" style="width: 100.0%; height: 100.0%;">43. Park Łuczanowice (Nr. 64)</div>`)[0];
+                popup_70a1ae53aa128005e0ddf1d47d86dd4f.setContent(html_c9d1cd288f35a12663ad1c528010aab4);
+            
+        
+
+        circle_marker_808ed039f5bdaa520d3d02c1f0e8da6c.bindPopup(popup_70a1ae53aa128005e0ddf1d47d86dd4f)
+        ;
+
+        
+    
+    
+            circle_marker_808ed039f5bdaa520d3d02c1f0e8da6c.bindTooltip(
+                `<div>
+                     43. Park Łuczanowice
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_204dd0ed08d9a3d7bec9c6266d04c487 = L.circleMarker(
+                [50.09986111111111, 20.125444444444444],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_39bffcbb2485b8326a1f2a79c686b4bf = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1c58c33322e8b949784dad79e380818e = $(`<div id="html_1c58c33322e8b949784dad79e380818e" style="width: 100.0%; height: 100.0%;">44. Park Wadów (Nr. 66)</div>`)[0];
+                popup_39bffcbb2485b8326a1f2a79c686b4bf.setContent(html_1c58c33322e8b949784dad79e380818e);
+            
+        
+
+        circle_marker_204dd0ed08d9a3d7bec9c6266d04c487.bindPopup(popup_39bffcbb2485b8326a1f2a79c686b4bf)
+        ;
+
+        
+    
+    
+            circle_marker_204dd0ed08d9a3d7bec9c6266d04c487.bindTooltip(
+                `<div>
+                     44. Park Wadów
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1b0dd98dcc8f04b713b867ade86e0489 = L.circleMarker(
+                [50.11377777777778, 20.154555555555554],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_90350fa8c451d4c1be945349ac6d2c19 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d00daf2c5b1453e68b25b935311225e4 = $(`<div id="html_d00daf2c5b1453e68b25b935311225e4" style="width: 100.0%; height: 100.0%;">45. Park Węgrzynowice (Nr. 68)</div>`)[0];
+                popup_90350fa8c451d4c1be945349ac6d2c19.setContent(html_d00daf2c5b1453e68b25b935311225e4);
+            
+        
+
+        circle_marker_1b0dd98dcc8f04b713b867ade86e0489.bindPopup(popup_90350fa8c451d4c1be945349ac6d2c19)
+        ;
+
+        
+    
+    
+            circle_marker_1b0dd98dcc8f04b713b867ade86e0489.bindTooltip(
+                `<div>
+                     45. Park Węgrzynowice
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e8474f1dbeb54989e1b0583007bd4784 = L.circleMarker(
+                [50.05588888888889, 20.180666666666667],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_b733e7a4846c1bb4e59b651d2f150f3f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bba9161edb0f38e7543399f6db7626e9 = $(`<div id="html_bba9161edb0f38e7543399f6db7626e9" style="width: 100.0%; height: 100.0%;">46. Park Przylasek Wyciąski (Nr. 75)</div>`)[0];
+                popup_b733e7a4846c1bb4e59b651d2f150f3f.setContent(html_bba9161edb0f38e7543399f6db7626e9);
+            
+        
+
+        circle_marker_e8474f1dbeb54989e1b0583007bd4784.bindPopup(popup_b733e7a4846c1bb4e59b651d2f150f3f)
+        ;
+
+        
+    
+    
+            circle_marker_e8474f1dbeb54989e1b0583007bd4784.bindTooltip(
+                `<div>
+                     46. Park Przylasek Wyciąski
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_37dce76c87eef27e7fc361c1f7bf3619 = L.circleMarker(
+                [50.04638888888889, 20.158277777777776],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_89872458e24ff9c18e771bf0c699a852 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a3f8026a686b6d073d357faefd0ad55d = $(`<div id="html_a3f8026a686b6d073d357faefd0ad55d" style="width: 100.0%; height: 100.0%;">47. Park Przylasek Rusiecki (Nr. 76)</div>`)[0];
+                popup_89872458e24ff9c18e771bf0c699a852.setContent(html_a3f8026a686b6d073d357faefd0ad55d);
+            
+        
+
+        circle_marker_37dce76c87eef27e7fc361c1f7bf3619.bindPopup(popup_89872458e24ff9c18e771bf0c699a852)
+        ;
+
+        
+    
+    
+            circle_marker_37dce76c87eef27e7fc361c1f7bf3619.bindTooltip(
+                `<div>
+                     47. Park Przylasek Rusiecki
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_efa31bf81ec3d43c76a033749f83ede8 = L.circleMarker(
+                [50.02422222222222, 20.048166666666667],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_a4b79df447f1844fdbf640ef86e23f91 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_38d72776c60b9cd9401f738302181edd = $(`<div id="html_38d72776c60b9cd9401f738302181edd" style="width: 100.0%; height: 100.0%;">48. Park Złocień (Nr. 41)</div>`)[0];
+                popup_a4b79df447f1844fdbf640ef86e23f91.setContent(html_38d72776c60b9cd9401f738302181edd);
+            
+        
+
+        circle_marker_efa31bf81ec3d43c76a033749f83ede8.bindPopup(popup_a4b79df447f1844fdbf640ef86e23f91)
+        ;
+
+        
+    
+    
+            circle_marker_efa31bf81ec3d43c76a033749f83ede8.bindTooltip(
+                `<div>
+                     48. Park Złocień
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_10fa782ee8c66da88eee9fd3844c2395 = L.circleMarker(
+                [50.014361111111114, 20.039694444444443],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_91d0e89925f3acaa54c8a86623fc68da = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9589c7e09a4ad00692aa8dcdb4a6b132 = $(`<div id="html_9589c7e09a4ad00692aa8dcdb4a6b132" style="width: 100.0%; height: 100.0%;">49. Park przy Dworze Czeczów (Nr. 43)</div>`)[0];
+                popup_91d0e89925f3acaa54c8a86623fc68da.setContent(html_9589c7e09a4ad00692aa8dcdb4a6b132);
+            
+        
+
+        circle_marker_10fa782ee8c66da88eee9fd3844c2395.bindPopup(popup_91d0e89925f3acaa54c8a86623fc68da)
+        ;
+
+        
+    
+    
+            circle_marker_10fa782ee8c66da88eee9fd3844c2395.bindTooltip(
+                `<div>
+                     49. Park przy Dworze Czeczów
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_10fbe883a74d4cb53f5b86808f47c708 = L.circleMarker(
+                [50.01175, 20.01386111111111],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_8b0c7101f7d1675e964394da1dd36cfc = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_acabd70d2bcac0bb67a7821764fc3595 = $(`<div id="html_acabd70d2bcac0bb67a7821764fc3595" style="width: 100.0%; height: 100.0%;">50. Park Aleksandry (Nr. 45)</div>`)[0];
+                popup_8b0c7101f7d1675e964394da1dd36cfc.setContent(html_acabd70d2bcac0bb67a7821764fc3595);
+            
+        
+
+        circle_marker_10fbe883a74d4cb53f5b86808f47c708.bindPopup(popup_8b0c7101f7d1675e964394da1dd36cfc)
+        ;
+
+        
+    
+    
+            circle_marker_10fbe883a74d4cb53f5b86808f47c708.bindTooltip(
+                `<div>
+                     50. Park Aleksandry
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0e326653e4892ed3062261afbf66176e = L.circleMarker(
+                [50.00830555555556, 20.00808333333333],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_7e634ce3494d3fe561c39122695175ce = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b8f3b8b0fcc326df1277b46920f6350c = $(`<div id="html_b8f3b8b0fcc326df1277b46920f6350c" style="width: 100.0%; height: 100.0%;">51. Park Rżąka (Nr. 44)</div>`)[0];
+                popup_7e634ce3494d3fe561c39122695175ce.setContent(html_b8f3b8b0fcc326df1277b46920f6350c);
+            
+        
+
+        circle_marker_0e326653e4892ed3062261afbf66176e.bindPopup(popup_7e634ce3494d3fe561c39122695175ce)
+        ;
+
+        
+    
+    
+            circle_marker_0e326653e4892ed3062261afbf66176e.bindTooltip(
+                `<div>
+                     51. Park Rżąka
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7ec8109b00dc2a19aae5a1f523f6d66c = L.circleMarker(
+                [50.01294444444444, 20.005055555555554],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_5a21b877449f4b4f8e7fd7ccb610caf4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_97de89001dbaa600fb59dccb70a7324f = $(`<div id="html_97de89001dbaa600fb59dccb70a7324f" style="width: 100.0%; height: 100.0%;">52. Park Kurczaba (Nr. 78)</div>`)[0];
+                popup_5a21b877449f4b4f8e7fd7ccb610caf4.setContent(html_97de89001dbaa600fb59dccb70a7324f);
+            
+        
+
+        circle_marker_7ec8109b00dc2a19aae5a1f523f6d66c.bindPopup(popup_5a21b877449f4b4f8e7fd7ccb610caf4)
+        ;
+
+        
+    
+    
+            circle_marker_7ec8109b00dc2a19aae5a1f523f6d66c.bindTooltip(
+                `<div>
+                     52. Park Kurczaba
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b3755d7f929ce526128f2777997f1fb9 = L.circleMarker(
+                [50.017694444444444, 20.011805555555554],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_8d1116359ee1b923a5660d0290a28a3c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0234cc41a1ebdfac38056de1680d4b2c = $(`<div id="html_0234cc41a1ebdfac38056de1680d4b2c" style="width: 100.0%; height: 100.0%;">53. Park Aleksandry Północ (Nr. 47)</div>`)[0];
+                popup_8d1116359ee1b923a5660d0290a28a3c.setContent(html_0234cc41a1ebdfac38056de1680d4b2c);
+            
+        
+
+        circle_marker_b3755d7f929ce526128f2777997f1fb9.bindPopup(popup_8d1116359ee1b923a5660d0290a28a3c)
+        ;
+
+        
+    
+    
+            circle_marker_b3755d7f929ce526128f2777997f1fb9.bindTooltip(
+                `<div>
+                     53. Park Aleksandry Północ
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f83a29f8e729e7e67ed3b5d2127ea36e = L.circleMarker(
+                [50.02077777777778, 20.004361111111113],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_1612dd815ee0e0dea80014434065e19f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_01977ce5f504b2b62f0ba41e0785b8a5 = $(`<div id="html_01977ce5f504b2b62f0ba41e0785b8a5" style="width: 100.0%; height: 100.0%;">54. Park Lilli Wenedy (Nr. 46)</div>`)[0];
+                popup_1612dd815ee0e0dea80014434065e19f.setContent(html_01977ce5f504b2b62f0ba41e0785b8a5);
+            
+        
+
+        circle_marker_f83a29f8e729e7e67ed3b5d2127ea36e.bindPopup(popup_1612dd815ee0e0dea80014434065e19f)
+        ;
+
+        
+    
+    
+            circle_marker_f83a29f8e729e7e67ed3b5d2127ea36e.bindTooltip(
+                `<div>
+                     54. Park Lilli Wenedy
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_97465d046c1b65557835ab36de3a97ee = L.circleMarker(
+                [50.018, 19.99511111111111],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_2f0136e81b56f8a47830480af054f6c3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b6bdd1ad46f186b60d64f1cc1847d202 = $(`<div id="html_b6bdd1ad46f186b60d64f1cc1847d202" style="width: 100.0%; height: 100.0%;">55. Park im. Anny i Erazma Jerzmanowskich (Nr. 42)</div>`)[0];
+                popup_2f0136e81b56f8a47830480af054f6c3.setContent(html_b6bdd1ad46f186b60d64f1cc1847d202);
+            
+        
+
+        circle_marker_97465d046c1b65557835ab36de3a97ee.bindPopup(popup_2f0136e81b56f8a47830480af054f6c3)
+        ;
+
+        
+    
+    
+            circle_marker_97465d046c1b65557835ab36de3a97ee.bindTooltip(
+                `<div>
+                     55. Park im. Anny i Erazma Jerzmanowskich
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f87dcd41c20c284966c8f30697419f1a = L.circleMarker(
+                [50.01463888888889, 19.979666666666667],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_0fae36b00924055135d96ae4aebb367e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_48cbe2310fcd831d6d6356f078e43279 = $(`<div id="html_48cbe2310fcd831d6d6356f078e43279" style="width: 100.0%; height: 100.0%;">56. Park Rzeczny Drwinka (Nr. 40)</div>`)[0];
+                popup_0fae36b00924055135d96ae4aebb367e.setContent(html_48cbe2310fcd831d6d6356f078e43279);
+            
+        
+
+        circle_marker_f87dcd41c20c284966c8f30697419f1a.bindPopup(popup_0fae36b00924055135d96ae4aebb367e)
+        ;
+
+        
+    
+    
+            circle_marker_f87dcd41c20c284966c8f30697419f1a.bindTooltip(
+                `<div>
+                     56. Park Rzeczny Drwinka
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f9fd9b849903b1de6196227a45fb8e1d = L.circleMarker(
+                [50.00980555555556, 19.96066666666667],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_99a40d29283081504c40a5f53a30a9f8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1358ba193486133843149a24b2736fd4 = $(`<div id="html_1358ba193486133843149a24b2736fd4" style="width: 100.0%; height: 100.0%;">57. Park Kurdwanów (Nr. 39)</div>`)[0];
+                popup_99a40d29283081504c40a5f53a30a9f8.setContent(html_1358ba193486133843149a24b2736fd4);
+            
+        
+
+        circle_marker_f9fd9b849903b1de6196227a45fb8e1d.bindPopup(popup_99a40d29283081504c40a5f53a30a9f8)
+        ;
+
+        
+    
+    
+            circle_marker_f9fd9b849903b1de6196227a45fb8e1d.bindTooltip(
+                `<div>
+                     57. Park Kurdwanów
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7d01902f34f8e8df972a640e3d9d899a = L.circleMarker(
+                [50.02163888888889, 19.965166666666665],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_402aa8a39028ed4a4fc2b330feb56cf6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_24770b680c4fee641db47f4cfb2a3666 = $(`<div id="html_24770b680c4fee641db47f4cfb2a3666" style="width: 100.0%; height: 100.0%;">58. Park Duchacki (Nr. 38)</div>`)[0];
+                popup_402aa8a39028ed4a4fc2b330feb56cf6.setContent(html_24770b680c4fee641db47f4cfb2a3666);
+            
+        
+
+        circle_marker_7d01902f34f8e8df972a640e3d9d899a.bindPopup(popup_402aa8a39028ed4a4fc2b330feb56cf6)
+        ;
+
+        
+    
+    
+            circle_marker_7d01902f34f8e8df972a640e3d9d899a.bindTooltip(
+                `<div>
+                     58. Park Duchacki
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6ee27692309657ad9afc9bbb733ecc7b = L.circleMarker(
+                [50.02344444444444, 19.944777777777777],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_976678359c144de2a021012f77351c4d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_eb2705d44fd632581f9c20be4a4f8b01 = $(`<div id="html_eb2705d44fd632581f9c20be4a4f8b01" style="width: 100.0%; height: 100.0%;">59. Park Łagiewnicki (Nr. 16)</div>`)[0];
+                popup_976678359c144de2a021012f77351c4d.setContent(html_eb2705d44fd632581f9c20be4a4f8b01);
+            
+        
+
+        circle_marker_6ee27692309657ad9afc9bbb733ecc7b.bindPopup(popup_976678359c144de2a021012f77351c4d)
+        ;
+
+        
+    
+    
+            circle_marker_6ee27692309657ad9afc9bbb733ecc7b.bindTooltip(
+                `<div>
+                     59. Park Łagiewnicki
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e8f9576ff2fa0a270ed79afe942c56b8 = L.circleMarker(
+                [50.01825, 19.92791666666667],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_05d898a24a37fe3a4f45b05d355c01e6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8e1f67e097ffd6f482f6ea798d086e8d = $(`<div id="html_8e1f67e097ffd6f482f6ea798d086e8d" style="width: 100.0%; height: 100.0%;">60. Park Solvay (Nr. 17)</div>`)[0];
+                popup_05d898a24a37fe3a4f45b05d355c01e6.setContent(html_8e1f67e097ffd6f482f6ea798d086e8d);
+            
+        
+
+        circle_marker_e8f9576ff2fa0a270ed79afe942c56b8.bindPopup(popup_05d898a24a37fe3a4f45b05d355c01e6)
+        ;
+
+        
+    
+    
+            circle_marker_e8f9576ff2fa0a270ed79afe942c56b8.bindTooltip(
+                `<div>
+                     60. Park Solvay
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a802b4b4a55e2cdcc90f19522906bf29 = L.circleMarker(
+                [50.002361111111114, 19.912305555555555],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_30501c3502ac8064b2b507e4721976d7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4bdad12cf33501095983058f3fdfb49b = $(`<div id="html_4bdad12cf33501095983058f3fdfb49b" style="width: 100.0%; height: 100.0%;">61. Park Maćka i Doroty (Nr. 36)</div>`)[0];
+                popup_30501c3502ac8064b2b507e4721976d7.setContent(html_4bdad12cf33501095983058f3fdfb49b);
+            
+        
+
+        circle_marker_a802b4b4a55e2cdcc90f19522906bf29.bindPopup(popup_30501c3502ac8064b2b507e4721976d7)
+        ;
+
+        
+    
+    
+            circle_marker_a802b4b4a55e2cdcc90f19522906bf29.bindTooltip(
+                `<div>
+                     61. Park Maćka i Doroty
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f7f0ff127c2bbab336e069aba76e197b = L.circleMarker(
+                [50.00044444444445, 19.90575],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_3960d61a6c4eae73a183fc5bbbc091b9 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_51c47ff06ff21cca5fd1747daaebdd71 = $(`<div id="html_51c47ff06ff21cca5fd1747daaebdd71" style="width: 100.0%; height: 100.0%;">62. Park przy Forcie Borek (Nr. 37)</div>`)[0];
+                popup_3960d61a6c4eae73a183fc5bbbc091b9.setContent(html_51c47ff06ff21cca5fd1747daaebdd71);
+            
+        
+
+        circle_marker_f7f0ff127c2bbab336e069aba76e197b.bindPopup(popup_3960d61a6c4eae73a183fc5bbbc091b9)
+        ;
+
+        
+    
+    
+            circle_marker_f7f0ff127c2bbab336e069aba76e197b.bindTooltip(
+                `<div>
+                     62. Park przy Forcie Borek
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ffb57954074a42c8a21b25de7d643ba8 = L.circleMarker(
+                [50.02802777777778, 19.92711111111111],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_85a9bf01d80c26a10f80441b41668cda = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1d24010d8c84e79df1e058a36e8a2569 = $(`<div id="html_1d24010d8c84e79df1e058a36e8a2569" style="width: 100.0%; height: 100.0%;">63. Park Rzeczny Wilga (Nr. 18)</div>`)[0];
+                popup_85a9bf01d80c26a10f80441b41668cda.setContent(html_1d24010d8c84e79df1e058a36e8a2569);
+            
+        
+
+        circle_marker_ffb57954074a42c8a21b25de7d643ba8.bindPopup(popup_85a9bf01d80c26a10f80441b41668cda)
+        ;
+
+        
+    
+    
+            circle_marker_ffb57954074a42c8a21b25de7d643ba8.bindTooltip(
+                `<div>
+                     63. Park Rzeczny Wilga
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4f665d603debbdf5a87b36172fa36dd1 = L.circleMarker(
+                [50.028305555555555, 19.90988888888889],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_7a6a35293ab9248e8356aade5a59da8c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4de35de552300f0b9a743b50cd5a7b22 = $(`<div id="html_4de35de552300f0b9a743b50cd5a7b22" style="width: 100.0%; height: 100.0%;">64. Park linearny Ruczaj (Nr. 32)</div>`)[0];
+                popup_7a6a35293ab9248e8356aade5a59da8c.setContent(html_4de35de552300f0b9a743b50cd5a7b22);
+            
+        
+
+        circle_marker_4f665d603debbdf5a87b36172fa36dd1.bindPopup(popup_7a6a35293ab9248e8356aade5a59da8c)
+        ;
+
+        
+    
+    
+            circle_marker_4f665d603debbdf5a87b36172fa36dd1.bindTooltip(
+                `<div>
+                     64. Park linearny Ruczaj
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0dbc019e13b94cf8bb311039c00ee23f = L.circleMarker(
+                [50.03380555555555, 19.908305555555554],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_0c4e10ef9ee374fa917ca0d22c980a13 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e54938f9680a20d80d44f0cc02d74323 = $(`<div id="html_e54938f9680a20d80d44f0cc02d74323" style="width: 100.0%; height: 100.0%;">65. Park Zakrzówek (Nr. 35)</div>`)[0];
+                popup_0c4e10ef9ee374fa917ca0d22c980a13.setContent(html_e54938f9680a20d80d44f0cc02d74323);
+            
+        
+
+        circle_marker_0dbc019e13b94cf8bb311039c00ee23f.bindPopup(popup_0c4e10ef9ee374fa917ca0d22c980a13)
+        ;
+
+        
+    
+    
+            circle_marker_0dbc019e13b94cf8bb311039c00ee23f.bindTooltip(
+                `<div>
+                     65. Park Zakrzówek
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_db1869425b4acb0e4fe269ad1cad07cf = L.circleMarker(
+                [50.030388888888886, 19.893916666666666],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_e1c4429ddf379ceb95ac92c594b79f81 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6d85a62a21e2f3be3009b40d7ac24402 = $(`<div id="html_6d85a62a21e2f3be3009b40d7ac24402" style="width: 100.0%; height: 100.0%;">66. Park Pychowicki (Nr. 34)</div>`)[0];
+                popup_e1c4429ddf379ceb95ac92c594b79f81.setContent(html_6d85a62a21e2f3be3009b40d7ac24402);
+            
+        
+
+        circle_marker_db1869425b4acb0e4fe269ad1cad07cf.bindPopup(popup_e1c4429ddf379ceb95ac92c594b79f81)
+        ;
+
+        
+    
+    
+            circle_marker_db1869425b4acb0e4fe269ad1cad07cf.bindTooltip(
+                `<div>
+                     66. Park Pychowicki
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2dc8d9cf6ed16911609db78a294f1c81 = L.circleMarker(
+                [50.05419444444444, 19.89286111111111],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_aae532c4aaa7b106bcf731eb7af047a6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b50622881b769283faa9cfb86145df5a = $(`<div id="html_b50622881b769283faa9cfb86145df5a" style="width: 100.0%; height: 100.0%;">67. Park Fort 2 "Kościuszko" im. prof. Janusza Bogdanowskiego (Nr. 77)</div>`)[0];
+                popup_aae532c4aaa7b106bcf731eb7af047a6.setContent(html_b50622881b769283faa9cfb86145df5a);
+            
+        
+
+        circle_marker_2dc8d9cf6ed16911609db78a294f1c81.bindPopup(popup_aae532c4aaa7b106bcf731eb7af047a6)
+        ;
+
+        
+    
+    
+            circle_marker_2dc8d9cf6ed16911609db78a294f1c81.bindTooltip(
+                `<div>
+                     67. Park Fort 2 "Kościuszko" im. prof. Janusza Bogdanowskiego
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_37799e5f19cf3b227357db562327a8c6 = L.circleMarker(
+                [50.06586111111111, 19.871833333333335],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_544272a1ec253da70224a5470ff873ac = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5f0afca85dbc3435358b1159bf0bda07 = $(`<div id="html_5f0afca85dbc3435358b1159bf0bda07" style="width: 100.0%; height: 100.0%;">68. Park Decjusza (Nr. 30)</div>`)[0];
+                popup_544272a1ec253da70224a5470ff873ac.setContent(html_5f0afca85dbc3435358b1159bf0bda07);
+            
+        
+
+        circle_marker_37799e5f19cf3b227357db562327a8c6.bindPopup(popup_544272a1ec253da70224a5470ff873ac)
+        ;
+
+        
+    
+    
+            circle_marker_37799e5f19cf3b227357db562327a8c6.bindTooltip(
+                `<div>
+                     68. Park Decjusza
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c035bea41680004688904fb452ab499e = L.circleMarker(
+                [50.071083333333334, 19.868194444444445],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_9d96cc38b7835742d72d61b8c609b3f5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2adb3c7880d5de51015105876ec40fb8 = $(`<div id="html_2adb3c7880d5de51015105876ec40fb8" style="width: 100.0%; height: 100.0%;">69. Park Rzeczny Rudawa (Nr. 31)</div>`)[0];
+                popup_9d96cc38b7835742d72d61b8c609b3f5.setContent(html_2adb3c7880d5de51015105876ec40fb8);
+            
+        
+
+        circle_marker_c035bea41680004688904fb452ab499e.bindPopup(popup_9d96cc38b7835742d72d61b8c609b3f5)
+        ;
+
+        
+    
+    
+            circle_marker_c035bea41680004688904fb452ab499e.bindTooltip(
+                `<div>
+                     69. Park Rzeczny Rudawa
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_449ff0997448329ca55c9f5587cfd5df = L.circleMarker(
+                [50.07911111111111, 19.85736111111111],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_c312ae02a2676464289e72664af6c88b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_359731f29bb0ba89eb5517d58ffe23d4 = $(`<div id="html_359731f29bb0ba89eb5517d58ffe23d4" style="width: 100.0%; height: 100.0%;">70. Park Młynówka Królewska (Nr. 28)</div>`)[0];
+                popup_c312ae02a2676464289e72664af6c88b.setContent(html_359731f29bb0ba89eb5517d58ffe23d4);
+            
+        
+
+        circle_marker_449ff0997448329ca55c9f5587cfd5df.bindPopup(popup_c312ae02a2676464289e72664af6c88b)
+        ;
+
+        
+    
+    
+            circle_marker_449ff0997448329ca55c9f5587cfd5df.bindTooltip(
+                `<div>
+                     70. Park Młynówka Królewska
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ca6ceb3fc3d2442adaee0ec03ba8cb1a = L.circleMarker(
+                [50.094833333333334, 19.86575],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_0cf5201bf7d8fa21d6da07df59cfcff1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_840dc38da498e4ffaa2665f4fdb64414 = $(`<div id="html_840dc38da498e4ffaa2665f4fdb64414" style="width: 100.0%; height: 100.0%;">71. Park Rzeczny im. Włodzimierza Tetmajera (Nr. 27)</div>`)[0];
+                popup_0cf5201bf7d8fa21d6da07df59cfcff1.setContent(html_840dc38da498e4ffaa2665f4fdb64414);
+            
+        
+
+        circle_marker_ca6ceb3fc3d2442adaee0ec03ba8cb1a.bindPopup(popup_0cf5201bf7d8fa21d6da07df59cfcff1)
+        ;
+
+        
+    
+    
+            circle_marker_ca6ceb3fc3d2442adaee0ec03ba8cb1a.bindTooltip(
+                `<div>
+                     71. Park Rzeczny im. Włodzimierza Tetmajera
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_cb7eb3bce4faa5527fe15968412dc063 = L.circleMarker(
+                [50.08683333333333, 19.886972222222223],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_e4993f3eb76127784e0774ee688d5ba7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4c26721519984ea4070f90b14122091e = $(`<div id="html_4c26721519984ea4070f90b14122091e" style="width: 100.0%; height: 100.0%;">72. Park przy ul. Radzikowskiego (Nr. 26)</div>`)[0];
+                popup_e4993f3eb76127784e0774ee688d5ba7.setContent(html_4c26721519984ea4070f90b14122091e);
+            
+        
+
+        circle_marker_cb7eb3bce4faa5527fe15968412dc063.bindPopup(popup_e4993f3eb76127784e0774ee688d5ba7)
+        ;
+
+        
+    
+    
+            circle_marker_cb7eb3bce4faa5527fe15968412dc063.bindTooltip(
+                `<div>
+                     72. Park przy ul. Radzikowskiego
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_81c652dfc6e961c7c1ca06ea16ac3ee4 = L.circleMarker(
+                [50.08166666666666, 19.900083333333335],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_f75b3ab170a0cf468a0401dfd2bd4369 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_629a6864be46ffc07091c7a7bd6356e1 = $(`<div id="html_629a6864be46ffc07091c7a7bd6356e1" style="width: 100.0%; height: 100.0%;">73. Park przy Forcie Bronowice (Nr. 25)</div>`)[0];
+                popup_f75b3ab170a0cf468a0401dfd2bd4369.setContent(html_629a6864be46ffc07091c7a7bd6356e1);
+            
+        
+
+        circle_marker_81c652dfc6e961c7c1ca06ea16ac3ee4.bindPopup(popup_f75b3ab170a0cf468a0401dfd2bd4369)
+        ;
+
+        
+    
+    
+            circle_marker_81c652dfc6e961c7c1ca06ea16ac3ee4.bindTooltip(
+                `<div>
+                     73. Park przy Forcie Bronowice
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4a5ab6acf86c8c640a57472e10cbc521 = L.circleMarker(
+                [50.07541666666667, 19.910194444444443],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_3d99b2f88fa5c4ec95d33cfc5a58068d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_cac710edcbea044100d72ebc6e7b5848 = $(`<div id="html_cac710edcbea044100d72ebc6e7b5848" style="width: 100.0%; height: 100.0%;">74. Park Ogród Łobzów (Nr. 21)</div>`)[0];
+                popup_3d99b2f88fa5c4ec95d33cfc5a58068d.setContent(html_cac710edcbea044100d72ebc6e7b5848);
+            
+        
+
+        circle_marker_4a5ab6acf86c8c640a57472e10cbc521.bindPopup(popup_3d99b2f88fa5c4ec95d33cfc5a58068d)
+        ;
+
+        
+    
+    
+            circle_marker_4a5ab6acf86c8c640a57472e10cbc521.bindTooltip(
+                `<div>
+                     74. Park Ogród Łobzów
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_841d09d63478022e758cf8817b92fc6c = L.circleMarker(
+                [50.07113888888889, 19.91175],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_198ac4a3dd095582e318b0b39f8995ec = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_84d710b92daf1ea234b1a010ec5203a8 = $(`<div id="html_84d710b92daf1ea234b1a010ec5203a8" style="width: 100.0%; height: 100.0%;">75. Park św. Wincentego a'Paulo (Nr. 24)</div>`)[0];
+                popup_198ac4a3dd095582e318b0b39f8995ec.setContent(html_84d710b92daf1ea234b1a010ec5203a8);
+            
+        
+
+        circle_marker_841d09d63478022e758cf8817b92fc6c.bindPopup(popup_198ac4a3dd095582e318b0b39f8995ec)
+        ;
+
+        
+    
+    
+            circle_marker_841d09d63478022e758cf8817b92fc6c.bindTooltip(
+                `<div>
+                     75. Park św. Wincentego a'Paulo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_35d147305944c4c3b17b7c3fd05f9de1 = L.circleMarker(
+                [50.067083333333336, 19.924333333333333],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_8724aea601c4e634d2902c0429070804 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ac6ffcedfd39820bbb97c4394a4f58e4 = $(`<div id="html_ac6ffcedfd39820bbb97c4394a4f58e4" style="width: 100.0%; height: 100.0%;">76. Park Krakowski im. M. Grechuty (Nr. 23)</div>`)[0];
+                popup_8724aea601c4e634d2902c0429070804.setContent(html_ac6ffcedfd39820bbb97c4394a4f58e4);
+            
+        
+
+        circle_marker_35d147305944c4c3b17b7c3fd05f9de1.bindPopup(popup_8724aea601c4e634d2902c0429070804)
+        ;
+
+        
+    
+    
+            circle_marker_35d147305944c4c3b17b7c3fd05f9de1.bindTooltip(
+                `<div>
+                     76. Park Krakowski im. M. Grechuty
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_234ba702263036fa4c9db16884d2aa6e = L.circleMarker(
+                [50.065416666666664, 19.92897222222222],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_81c75fc0f4660f7cd29cb4150b6c6ae8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_feda47bda89105336b411360f71fab02 = $(`<div id="html_feda47bda89105336b411360f71fab02" style="width: 100.0%; height: 100.0%;">77. Park im. Wisławy Szymborskiej (Nr. 1)</div>`)[0];
+                popup_81c75fc0f4660f7cd29cb4150b6c6ae8.setContent(html_feda47bda89105336b411360f71fab02);
+            
+        
+
+        circle_marker_234ba702263036fa4c9db16884d2aa6e.bindPopup(popup_81c75fc0f4660f7cd29cb4150b6c6ae8)
+        ;
+
+        
+    
+    
+            circle_marker_234ba702263036fa4c9db16884d2aa6e.bindTooltip(
+                `<div>
+                     77. Park im. Wisławy Szymborskiej
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0beedf01ae6e153d1b2c30a3d5c6273b = L.circleMarker(
+                [50.05927777777778, 19.922944444444443],
+                {"bubblingMouseEvents": true, "color": "#1d4ed8", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1d4ed8", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_402800f16b1b3384a73002a06b9af37d);
+        
+    
+        var popup_e642a85ca2ec9b9654803f76224527e4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bd296631f66ae78938591b155c569ff2 = $(`<div id="html_bd296631f66ae78938591b155c569ff2" style="width: 100.0%; height: 100.0%;">78. Błonia Krakowskie (Nr. 29)</div>`)[0];
+                popup_e642a85ca2ec9b9654803f76224527e4.setContent(html_bd296631f66ae78938591b155c569ff2);
+            
+        
+
+        circle_marker_0beedf01ae6e153d1b2c30a3d5c6273b.bindPopup(popup_e642a85ca2ec9b9654803f76224527e4)
+        ;
+
+        
+    
+    
+            circle_marker_0beedf01ae6e153d1b2c30a3d5c6273b.bindTooltip(
+                `<div>
+                     78. Błonia Krakowskie
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            map_402800f16b1b3384a73002a06b9af37d.fitBounds(
+                [[50.06086111111111, 19.91772222222222], [50.049083333333336, 19.916944444444443], [50.052194444444446, 19.933944444444446], [50.04375, 19.942333333333334], [50.04163888888889, 19.950277777777778], [50.04119444444444, 19.972583333333333], [50.03463888888889, 19.990861111111112], [50.04655555555556, 19.993555555555556], [50.05661111111111, 19.97936111111111], [50.05513888888889, 19.96575], [50.05097222222222, 19.959944444444446], [50.05975, 19.947666666666667], [50.066472222222224, 19.950499999999998], [50.065333333333335, 19.94088888888889], [50.06927777777778, 19.941555555555556], [50.076277777777776, 19.937833333333334], [50.08069444444445, 19.92786111111111], [50.085861111111114, 19.92072222222222], [50.089666666666666, 19.922027777777778], [50.093444444444444, 19.94022222222222], [50.08269444444444, 19.95727777777778], [50.08727777777778, 19.96638888888889], [50.09061111111111, 19.969194444444444], [50.096666666666664, 19.987222222222222], [50.09961111111111, 19.998361111111112], [50.10088888888889, 20.01725], [50.09588888888889, 20.007055555555556], [50.08925, 19.998361111111112], [50.084694444444445, 20.007166666666667], [50.07952777777778, 20.00138888888889], [50.06713888888889, 19.99525], [50.06511111111111, 20.013527777777778], [50.076277777777776, 20.027055555555556], [50.084833333333336, 20.02647222222222], [50.0755, 20.039305555555554], [50.066833333333335, 20.04222222222222], [50.07113888888889, 20.033583333333333], [50.066722222222225, 20.050638888888887], [50.07475, 20.04425], [50.08130555555555, 20.054333333333332], [50.07969444444444, 20.053361111111112], [50.094944444444444, 20.058805555555555], [50.10825, 20.11313888888889], [50.09986111111111, 20.125444444444444], [50.11377777777778, 20.154555555555554], [50.05588888888889, 20.180666666666667], [50.04638888888889, 20.158277777777776], [50.02422222222222, 20.048166666666667], [50.014361111111114, 20.039694444444443], [50.01175, 20.01386111111111], [50.00830555555556, 20.00808333333333], [50.01294444444444, 20.005055555555554], [50.017694444444444, 20.011805555555554], [50.02077777777778, 20.004361111111113], [50.018, 19.99511111111111], [50.01463888888889, 19.979666666666667], [50.00980555555556, 19.96066666666667], [50.02163888888889, 19.965166666666665], [50.02344444444444, 19.944777777777777], [50.01825, 19.92791666666667], [50.002361111111114, 19.912305555555555], [50.00044444444445, 19.90575], [50.02802777777778, 19.92711111111111], [50.028305555555555, 19.90988888888889], [50.03380555555555, 19.908305555555554], [50.030388888888886, 19.893916666666666], [50.05419444444444, 19.89286111111111], [50.06586111111111, 19.871833333333335], [50.071083333333334, 19.868194444444445], [50.07911111111111, 19.85736111111111], [50.094833333333334, 19.86575], [50.08683333333333, 19.886972222222223], [50.08166666666666, 19.900083333333335], [50.07541666666667, 19.910194444444443], [50.07113888888889, 19.91175], [50.067083333333336, 19.924333333333333], [50.065416666666664, 19.92897222222222], [50.05927777777778, 19.922944444444443], [50.06086111111111, 19.91772222222222]],
+                {}
+            );
+        
+</script>
+</html>
